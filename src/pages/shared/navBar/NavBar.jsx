@@ -30,14 +30,9 @@ const NavBar = () => {
       <li>
         <Link to="/dashboard ">Dashboard </Link>
       </li>
-      {user && <li>
-        <img src={user?.photoURL} alt="" />
-      </li>}
-      <li>
-        {user ? <Link to='#'> <button onClick={handleLogOut} className="btn btn-outline btn-secondary">Log Out</button> </Link> : <Link to='/login'>
-          <button className="btn btn-outline btn-secondary">login</button>
+        {user ? <div className="flex flex-col md:flex-row md:items-center mt-5 md:mt-0" ><span className="tooltip" data-tip={user?.displayName}><img   className="w-12 h-12 mb-2 md:mb-0 cursor-pointer bg-cover bg-center mx-4 rounded-full" src={user?.photoURL} alt="" /></span><button onClick={handleLogOut} className="btn btn-outline btn-sm">Log Out</button></div>  : <Link to='/login'>
+          <button className="btn btn-outline btn-sm">login</button>
         </Link>}
-      </li>
     </>
   );
   return (
@@ -45,7 +40,7 @@ const NavBar = () => {
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
-        <div className="w-full navbar  bg-stone-300">
+        <div className="w-full navbar py-5  bg-stone-300">
           <div className="flex-none lg:hidden">
             <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
               <svg
@@ -84,9 +79,9 @@ const NavBar = () => {
         </div>
         {/* Page content here */}
       </div>
-      <div className="drawer-side">
+      <div className="drawer-side z-50">
         <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 h-full bg-base-200">
+        <ul className="menu p-4 w-80  h-full bg-base-200">
           {/* Sidebar content here */}
           {listItem}
         </ul>

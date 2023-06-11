@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Register = () => {
     const [show, setShow] = useState(false)
-    const {createUser} = useContext(AuthContext);
+    const {createUser, updateUserProfile} = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -32,6 +32,12 @@ const Register = () => {
         console.log(result.user);
         if(result.user){
             toast("User create Successfully!")
+            updateUserProfile(data.name , data.photoURL)
+            .then(result=>{
+                console.log(result);
+            }).catch(err=>{
+                console.log(err);
+            })
         }
     })
     .catch(err=>{
