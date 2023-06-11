@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 const Login = () => {
+    const [show, setShow] = useState(false)
   const {
     register,
     handleSubmit,
@@ -23,7 +26,7 @@ const Login = () => {
               Please Login!
             </h1>
           </div>
-          <div className="card flex-shrink-0 w-full max-w-lg bg-slate-100">
+          <div className="card flex-shrink-0 w-full max-w-md bg-slate-100">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -42,14 +45,17 @@ const Login = () => {
                 <label className="label">
                   <span className="label-text">Password*</span>
                 </label>
+                <div className="flex items-center justify-between">
                 <input
-                  type="password"
+                  type={show ? 'text' : 'password'}
                   {...register("password", {
                     required: true,
                   })}
                   placeholder="password"
-                  className="input input-bordered"
+                  className="input input-bordered relative w-full"
                 />
+                <span className="absolute right-10 p-2 cursor-pointer" onClick={()=>setShow(!show)}>{show ? <FaEye /> : <FaEyeSlash />}</span>
+                </div>
               </div>
               <div className="form-control mt-6">
                 <input

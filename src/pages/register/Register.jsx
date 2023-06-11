@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Swal from "sweetalert2";
 const Register = () => {
+    const [show, setShow] = useState(false)
+    const {createUser} = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -14,7 +20,24 @@ const Register = () => {
   console.log(user);
 
   const onSubmit = (data) => {
+
+
+    if(data.password !== data.confirmPass){
+        toast.error('Password Does not match!')
+        return;
+    }
+
     console.log(data);
+    createUser(data.email, data.password)
+    .then(result =>{
+        console.log(result.user);
+        if(result.user){
+            toast("User create Successfully!")
+        }
+    })
+    .catch(err=>{
+        toast.error(err.message)
+    })
   };
   return (
    <>
@@ -74,16 +97,19 @@ const Register = () => {
               <label className="label">
                 <span className="label-text">Password*</span>
               </label>
+              <div className="flex items-center justify-between">
               <input
-                type="password"
+                type={show ? 'text' : 'password'}
                 {...register("password", {
                   required: true,
                   minLength: 6,
                   pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
                 })}
                 placeholder="password"
-                className="input input-bordered"
+                className="input input-bordered relative w-full"
               />
+              <span className="absolute right-10 p-2 cursor-pointer" onClick={()=>setShow(!show)}>{show ? <FaEye /> : <FaEyeSlash />}</span>
+              </div>
               {errors.password?.type === "required" && (
                 <p className="text-red-600">required</p>
               )}
@@ -101,12 +127,15 @@ const Register = () => {
               <label className="label">
                 <span className="label-text">Confirm Password*</span>
               </label>
+              <div className="flex items-center justify-between">
               <input
-                type="password"
+                type={show ? 'text' : 'password'}
                 {...register("confirmPass", { required: true })}
                 placeholder="Confirm Password"
-                className="input input-bordered"
+                className="input input-bordered w-full relative"
               />
+              <span className="absolute right-10 p-2 cursor-pointer" onClick={()=>setShow(!show)}>{show ? <FaEye /> : <FaEyeSlash />}</span>
+              </div>
               {errors.confirmPass?.type === "required" && (
                 <p className="text-red-600">required</p>
               )}
