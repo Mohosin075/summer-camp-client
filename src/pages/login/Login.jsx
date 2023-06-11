@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../../providers/AuthProvider";
+import { toast } from 'react-toastify';
 const Login = () => {
     const [show, setShow] = useState(false)
+    const {signIn} = useContext(AuthContext)
   const {
     register,
     handleSubmit,
@@ -13,6 +16,16 @@ const Login = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    signIn(data.email, data.password)
+    .then(result =>{
+        const loggedUser = result.user
+        console.log(loggedUser);    
+        toast.success('user login successfull!')
+    })
+    .catch(err=>{
+        console.log(err);
+        toast.error(err.message)
+    })
   };
   return (
     <>

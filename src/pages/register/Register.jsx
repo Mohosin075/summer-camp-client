@@ -6,7 +6,6 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Swal from "sweetalert2";
 const Register = () => {
     const [show, setShow] = useState(false)
     const {createUser} = useContext(AuthContext);

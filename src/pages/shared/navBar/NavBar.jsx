@@ -1,6 +1,20 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { toast } from "react-toastify";
 
 const NavBar = () => {
+    const {user, logOut} = useContext(AuthContext)   
+    
+    const handleLogOut =()=>{
+        logOut()
+        .then(()=>{})
+        .catch(err=>{
+            console.log(err);
+            toast.error(err.message)
+        })
+    }
+    
   const listItem = (
     <>
       <li>
@@ -16,13 +30,13 @@ const NavBar = () => {
       <li>
         <Link to="/dashboard ">Dashboard </Link>
       </li>
+      {user && <li>
+        <img src={user?.photoURL} alt="" />
+      </li>}
       <li>
-        <img src="#" alt="" />
-      </li>
-      <li>
-        <Link to='/login'>
+        {user ? <Link to='#'> <button onClick={handleLogOut} className="btn btn-outline btn-secondary">Log Out</button> </Link> : <Link to='/login'>
           <button className="btn btn-outline btn-secondary">login</button>
-        </Link>
+        </Link>}
       </li>
     </>
   );
