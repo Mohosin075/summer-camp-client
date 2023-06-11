@@ -1,12 +1,17 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
+import { useContext } from "react";
+import { authContext } from "../../providers/AuthProvider";
 const Register = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const {user} = useContext(authContext)
+  console.log(user);
 
   const onSubmit = (data) => {
     console.log(data);
