@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
-import { authContext } from "../../providers/AuthProvider";
+import { AuthContext } from "../../providers/AuthProvider";
 const Register = () => {
   const {
     register,
@@ -10,7 +10,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const {user} = useContext(authContext)
+  const {user} = useContext(AuthContext)
   console.log(user);
 
   const onSubmit = (data) => {

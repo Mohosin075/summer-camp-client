@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import { createContext } from "react";
+import app from "../../firebase.config";
+import { getAuth } from "firebase/auth";
 
-
-export const authContext = createContext(null)
-
+export const AuthContext = createContext(null)
 const AuthProvider = ({children}) => {
+    const auth = getAuth(app);
 
     const user = {name : 'md mohosin'}
     const authInfo = {
@@ -11,9 +13,9 @@ const AuthProvider = ({children}) => {
     }
 
     return (
-        <authContext.Provider value={authInfo}>
+        <AuthContext.Provider value={authInfo}>
             {children}
-        </authContext.Provider>
+        </AuthContext.Provider>
     );
 };
 
