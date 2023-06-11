@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet-async";
 const Register = () => {
   const {
     register,
@@ -11,6 +12,10 @@ const Register = () => {
     console.log(data);
   };
   return (
+   <>
+   <Helmet>
+        <title>SpeckEasy | Register</title>
+      </Helmet>
     <div className="hero min-h-screen py-10">
       <div className="hero-content flex-col w-full">
         <div className="text-center lg:text-left">
@@ -120,6 +125,7 @@ const Register = () => {
         </div>
       </div>
     </div>
+   </>
   );
 };
 
