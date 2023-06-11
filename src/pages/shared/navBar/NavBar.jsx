@@ -69,7 +69,6 @@ const NavBar = () => {
           </div>
         </div>
         {/* Page content here */}
-        Content
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
