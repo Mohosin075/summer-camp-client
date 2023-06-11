@@ -12,6 +12,7 @@ const NavBar = () => {
       <li>
         <Link to="/classes">Classes</Link>
       </li>
+      {/* TODO : conditional  */}
       <li>
         <Link to="/dashboard ">Dashboard </Link>
       </li>
@@ -49,7 +50,7 @@ const NavBar = () => {
             </label>
           </div>
           <div className="flex-1 px-2 mx-2 text-lg md:text-xl lg:text-2xl font-semibold">
-            <span>
+            <a href="" className="flex items-center"><span>
               <img
                 className="w-8 h-8 mr-2 rounded"
                 src="https://i.ibb.co/sqvyqPF/download.png"
@@ -58,7 +59,7 @@ const NavBar = () => {
             </span>
             <span className="text-orange-600"> SpeakEasy </span>{" "}
             <span className="text-blue-600"> Language</span>
-            <span className="text-green-600">Institute</span>
+            <span className="text-green-600">Institute</span></a>
           </div>
           <div className="flex-none hidden lg:block">
             <ul className="menu flex items-center menu-horizontal">
