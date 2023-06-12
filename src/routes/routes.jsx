@@ -16,7 +16,8 @@ import Class from "../pages/classes/class/Class";
       children : [
         {
             path : '/',
-            element : <Home></Home>
+            element : <Home></Home>,
+            loader : ()=> fetch('http://localhost:5000/polularClass')
         },
         {
             path : '/login',
