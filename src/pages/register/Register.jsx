@@ -6,6 +6,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SocialLogin from "../../components/SocialLogin";
 const Register = () => {
     const [show, setShow] = useState(false)
     const {createUser, updateUserProfile} = useContext(AuthContext);
@@ -160,6 +161,7 @@ const Register = () => {
                 Login
               </Link>
             </p>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>

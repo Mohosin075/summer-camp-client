@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProvider";
 import { toast } from 'react-toastify';
+import SocialLogin from "../../components/SocialLogin";
 const Login = () => {
     const [show, setShow] = useState(false)
     const {signIn} = useContext(AuthContext)
@@ -85,6 +86,7 @@ const Login = () => {
                   Register
                 </Link>
               </p>
+              <SocialLogin></SocialLogin>
             </div>
           </div>
         </div>

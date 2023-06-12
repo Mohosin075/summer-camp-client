@@ -1,9 +1,18 @@
 import { useLoaderData } from "react-router-dom";
 import { FaRegHeart } from 'react-icons/fa';
 import SetPageTitle from "../../../components/setPageTitle";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 const Class = () => {
   const loadClass = useLoaderData();
-  console.log(loadClass);
+  const {user} = useContext(AuthContext)
+
+    const handleSelectCourse =(id)=>{
+        if(!user){
+            console.log("login first");
+        }
+    }
+
   return (
     <div className="my-20">
         <SetPageTitle title='Select Class for Learn ' desc='Expand your horizons with our foreign language learning program. Gain fluency in a new language through interactive lessons and immersive experiences. Unlock new opportunities and connect with cultures around the world.'></SetPageTitle>
@@ -19,7 +28,7 @@ const Class = () => {
             <p>Price : ${singleClass.price}</p>
             <h3 className="font-semibold text-lg">Instructor : {singleClass.instructor}</h3>
             <div className="card-actions justify-end">
-              <button className="btn">
+              <button onClick={()=>handleSelectCourse(singleClass._id)} className="btn">
               <FaRegHeart />
                 select
               </button>
