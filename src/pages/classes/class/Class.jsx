@@ -4,7 +4,6 @@ import Cart from "../../../components/Cart";
 const Class = () => {
   const loadClass = useLoaderData();
 
-
   return (
     <div className="my-20">
         <SetPageTitle title='Select Class for Learn ' desc='Expand your horizons with our foreign language learning program. Gain fluency in a new language through interactive lessons and immersive experiences. Unlock new opportunities and connect with cultures around the world.'></SetPageTitle>

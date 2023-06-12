@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 
+import { useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 
 const Cart = ({singleClass}) => {
-    const handleSelectCourse =(id)=>{
-        console.log(id);
-    }
+    const [disable, setDisable] = useState(false)
     return (
         <div key={singleClass._id} className="card w-full glass">
           <figure>
@@ -18,7 +17,7 @@ const Cart = ({singleClass}) => {
             <p>Total Enroll : {singleClass.enrolled}</p>
             <h3 className="font-semibold text-lg">Instructor : {singleClass.instructor}</h3>
             <div className="card-actions justify-end">
-              <button onClick={()=>handleSelectCourse(singleClass._id)} className="btn">
+              <button disabled={disable} onClick={()=> setDisable(true)} className="btn">
               <FaRegHeart />
                 select
               </button>

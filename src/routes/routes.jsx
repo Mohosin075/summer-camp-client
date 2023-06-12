@@ -7,6 +7,7 @@ import ErrorPage from "../pages/error/errorPage";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import Class from "../pages/classes/class/Class";
+import Instractor from "../pages/instractor/Instractor";
 
   const router = createBrowserRouter([
     {
@@ -26,6 +27,11 @@ import Class from "../pages/classes/class/Class";
         {
             path : '/register',
             element : <Register></Register>
+        },
+        {
+            path : '/instructor',
+            element : <Instractor></Instractor>, 
+            loader : ()=> fetch('http://localhost:5000/instructor')
         },
         {
             path : '/classes',
