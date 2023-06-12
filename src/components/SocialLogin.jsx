@@ -1,36 +1,44 @@
-import { useContext } from 'react';
-import { FaGoogle } from 'react-icons/fa';
-import { AuthContext } from '../providers/AuthProvider';
-import Swal from 'sweetalert2';
-import { toast } from 'react-toastify';
+import { useContext } from "react";
+import { FaGoogle } from "react-icons/fa";
+import { AuthContext } from "../providers/AuthProvider";
 const SocialLogin = () => {
-    const {googleSignIn} = useContext(AuthContext)
+  const { googleSignIn } = useContext(AuthContext);
 
-    const handleGoogleLogin =()=>{
-        googleSignIn().then(result=>{
-            const user = result.user
-            if(user){
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Login Successfully',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-            }
-        })
-        .catch(error=>{
-            toast.error(error.message)
-        })
-    }
 
-    return (
-        <div className="mt-6">
-            <button onClick={handleGoogleLogin} className="btn  btn-outline">
-                <FaGoogle className='h-6 w-6'></FaGoogle> <span>Continue With Google</span>
-</button>
-        </div>
-    );
+  const handleGoogleLogin = () => {
+    googleSignIn()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+
+        const saveUser = {name : loggedUser.displayName, email : loggedUser.email, role : 'student'}
+          fetch('http://localhost:5000/users',{
+            method : "POST",
+            headers : {
+              'content-type' : 'application/json'
+            },
+            body : JSON.stringify(saveUser)
+          })
+          .then(res=>res.json())
+          .then((data)=>{
+                console.log('data', data);
+          })
+
+
+        })
+        .catch((err) => {
+          console.log(err);
+        }); 
+  };
+
+  return (
+    <div className="mt-6">
+      <button onClick={handleGoogleLogin} className="btn  btn-outline">
+        <FaGoogle className="h-6 w-6"></FaGoogle>{" "}
+        <span>Continue With Google</span>
+      </button>
+    </div>
+  );
 };
 
 export default SocialLogin;
