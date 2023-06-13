@@ -32,6 +32,7 @@ const Register = () => {
               const user = {
                 name: data.name,
                 email: data.email,
+                image : data.photoURL,
                 role: "student",
               };
               fetch("http://localhost:5000/users", {

@@ -1,15 +1,21 @@
-
-import { useLoaderData } from "react-router-dom";
-import SetPageTitle from "../../components/setPageTitle";
+import { useEffect, useState } from "react";
+import SetPageTitle from "../../../components/setPageTitle";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
-const Instractor = () => {
-  const loadData = useLoaderData();
-  console.log(loadData);
-  return (
-    <div className="my-20 px-4 md:px-8">
-        <SetPageTitle title='All Instructor' desc='Discover the most sought-after language classes that have captivated learners worldwide.'></SetPageTitle>
-      <div className="overflow-x-auto w-full mx-auto">
+const PopularInstuctor = () => {
+    const [instructors, setInstructors] = useState([])
+    useEffect(()=>{
+        fetch('http://localhost:5000/popularInstructor')
+        .then(res=>res.json())
+        .then(data=>{
+            setInstructors(data)
+        })
+    },[])
+    return (
+        <div className="my-20">
+            <SetPageTitle title='Popular Instructor' desc='Experience top-notch instruction from our popular instructors, known for their dynamic teaching style and extensive knowledge.'></SetPageTitle>
+            <div className="overflow-x-auto w-full mx-auto">
         <table className="table">
           {/* head */}
           <thead>
@@ -22,7 +28,7 @@ const Instractor = () => {
             </tr>
           </thead>
           <tbody>
-            {loadData.map((item, idx) => (
+            {instructors.map((item, idx) => (
               <tr key={item._id} className="hover text-lg">
                 <td>
                   <label>{idx + 1}</label>
@@ -43,9 +49,12 @@ const Instractor = () => {
             ))}
           </tbody>
         </table>
+        <div className="text-center w-full mt-12">
+      <button className="btn btn-outline w-1/3"><Link to='/instructor'>See All Instructor</Link></button>
       </div>
-    </div>
-  );
+      </div>
+        </div>
+    );
 };
 
-export default Instractor;
+export default PopularInstuctor;

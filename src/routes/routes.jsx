@@ -8,6 +8,7 @@ import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import Class from "../pages/classes/class/Class";
 import Instractor from "../pages/instractor/Instractor";
+import DashBoard from "../dashBoard/dashBoard";
 
   const router = createBrowserRouter([
     {
@@ -40,6 +41,11 @@ import Instractor from "../pages/instractor/Instractor";
         },
       ]
     },
+    {
+      path : '/dashboard',
+      element : <DashBoard></DashBoard>,
+      loader : ()=> fetch('')
+    }
   ]);
 
   export default router
