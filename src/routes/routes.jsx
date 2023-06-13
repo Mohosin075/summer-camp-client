@@ -13,6 +13,7 @@ import AddClass from "../dashBoard/Instructor/addAClass/AddClass";
 import MyClass from "../dashBoard/Instructor/myClass/MyClass";
 import PrivateRoutes from "./PrivateRoutes";
 import ForgetPass from "../pages/forgetPass/ForgetPass";
+import DashBoardHome from "../dashBoard/dashBoardHome/DashBoardHome";
 
   const router = createBrowserRouter([
     {
@@ -52,7 +53,12 @@ import ForgetPass from "../pages/forgetPass/ForgetPass";
     {
       path : '/dashboard',
       element : <PrivateRoutes><DashBoard></DashBoard></PrivateRoutes>, 
+      errorElement : <ErrorPage></ErrorPage>,
       children : [
+        {
+          path : '/dashboard',
+          element : <DashBoardHome></DashBoardHome>
+        },
         {
           path : '/dashboard/addClass',
           element : <AddClass></AddClass>

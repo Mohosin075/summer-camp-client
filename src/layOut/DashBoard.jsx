@@ -2,14 +2,22 @@ import { Link, Outlet } from "react-router-dom";
 import useUser from "../hooks/useUser";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import { toast } from "react-toastify";
 
 const DashBoard = () => {
   const [users] = useUser();
-  const { user } = useContext(AuthContext);
+  const { user,logOut } = useContext(AuthContext);
 
   const currentUser = users.find((current) => current?.email === user?.email);
   const currentUserRole = currentUser?.role;
-
+  const handleLogOut =()=>{
+    logOut()
+    .then(()=>{})
+    .catch(err=>{
+        console.log(err);
+        toast.error(err.message)
+    })
+}
   const listItem = (
     <>
       {currentUserRole === "student" && (
@@ -56,6 +64,9 @@ const DashBoard = () => {
       <li>
             <Link to="/">Home</Link>
           </li>
+      <li>
+      <Link to='/'><button onClick={handleLogOut} className="btn btn-outline">Log Out</button></Link>
+          </li>
     </>
   );
   return (
@@ -83,7 +94,7 @@ const DashBoard = () => {
             </label>
           </div>
           <div className="flex-1 px-2 mx-2 text-lg md:text-xl lg:text-2xl font-semibold">
-            <a href="" className="flex items-center">
+            <a href="/" className="flex items-center">
               <span>
                 <img
                   className="w-8 h-8 mr-2 rounded"

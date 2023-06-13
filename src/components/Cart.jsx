@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import useUser from "../hooks/useUser";
 
 
 
@@ -12,6 +13,23 @@ const Cart = ({singleClass}) => {
   const {user} = useContext(AuthContext)
     const [disable, setDisable] = useState(false)
     const location = useLocation()
+    const navigate = useNavigate()
+    const [users] = useUser();
+    
+    // console.log(user);
+    const currentUser = users.find(item=> item?.email === user?.email)
+
+    useEffect(()=>{
+      if(user){
+        setDisable(true)
+      }
+      if(user && users){
+        if(currentUser?.role === 'student'){
+          setDisable(false)
+        }
+    
+      }
+    },[currentUser, user, users])
     const handleSelect =(id)=>{
       if(!user){
         Swal.fire({
@@ -24,7 +42,9 @@ const Cart = ({singleClass}) => {
           confirmButtonText: 'Login Now'
         }).then((result) => {
           if (result.isConfirmed) {
-            <Navigate to="/" state={{ from: location }} replace > </Navigate>
+            // TODO : NOT WORKING REDIRECT
+            <Navigate to="/login" state={{ from: location }} replace > </Navigate>
+            navigate('/login')
           }
         })
         return
@@ -33,7 +53,7 @@ const Cart = ({singleClass}) => {
       console.log(id);
     }
     return (
-        <div key={singleClass._id} className="card w-full glass">
+        <div key={singleClass._id} className={`card w-full glass}`}>
           <figure>
             <img src={singleClass.image} alt="car!" />
           </figure>

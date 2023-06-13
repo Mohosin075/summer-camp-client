@@ -7,6 +7,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 const MyClass = () => {
   const [classes] = useClass();
   const { user } = useContext(AuthContext);
+  console.log(classes);
   const myClasses = classes.filter((item) => item?.email === user?.email);
 // TODO : pending class not showing
   console.log(classes);

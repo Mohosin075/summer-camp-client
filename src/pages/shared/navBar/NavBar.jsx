@@ -5,10 +5,11 @@ import { toast } from "react-toastify";
 
 const NavBar = () => {
     const {user, logOut} = useContext(AuthContext)   
-    
     const handleLogOut =()=>{
         logOut()
-        .then(()=>{})
+        .then(()=>{
+          window.location.reload()
+        })
         .catch(err=>{
             console.log(err);
             toast.error(err.message)

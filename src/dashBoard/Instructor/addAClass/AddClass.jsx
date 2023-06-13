@@ -4,11 +4,13 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import SetPageTitle from "../../../components/setPageTitle";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AddClass = () => {
   const { register, handleSubmit } = useForm();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [axiosSecure] = useAxiosSecure();
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_image_upload_token
   }`;
@@ -24,8 +26,6 @@ const AddClass = () => {
       confirmButtonText: "Yes, Confirm!",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(data);
-
         const formData = new FormData();
         formData.append("image", data.image[0]);
 
@@ -35,28 +35,31 @@ const AddClass = () => {
         })
           .then((res) => res.json())
           .then((imageResponse) => {
-            const image = imageResponse.data.display_url;
+            const imageURL = imageResponse.data.display_url;
+            const classData = {
+              name: data.name,
+              instructor: user.displayName,
+              email: user.email,
+              seats: parseInt(data.seats),
+              price: parseFloat(data.price),
+              status: "pending",
+              image: imageURL,
+              enrolled: 0,
+            };
+            axiosSecure.post("/addClass", classData).then((data) => {
+              console.log(data.data.insertedId);
+              if (data) {
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Added Successfully",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate('/dashboard/myClass')
+              }
+            });
           });
-
-        const classData = {
-          name: data.name,
-          image: data.image[0],
-          instructor: user.displayName,
-          email: user.email,
-          seats: parseInt(data.seats),
-          price: parseFloat(data.price),
-          status: "pending",
-        };
-
-        console.log(classData);
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Added Successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        // navigate('/dashboard/myClass')
       }
     });
   };
