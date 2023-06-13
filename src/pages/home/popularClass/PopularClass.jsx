@@ -13,7 +13,7 @@ const PopularClass = () => {
       ))}
     </div>
       <div className="text-center w-full mt-12">
-      <button className="btn btn-outline w-1/3"><Link to='/classes'>See All Class</Link></button>
+      <button className="btn btn-outline md:w-1/3"><Link to='/classes'>See All Class</Link></button>
       </div>
         </div>
     );

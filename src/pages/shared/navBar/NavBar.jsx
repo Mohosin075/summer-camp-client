@@ -67,7 +67,7 @@ const NavBar = () => {
             </span>
             <span className="text-orange-600"> SpeakEasy </span>{" "}
             <span className="text-blue-600"> Language</span>
-            <span className="text-green-600">Institute</span></a>
+            </a>
           </div>
           <div className="flex-none hidden lg:block">
             <ul className="menu flex items-center menu-horizontal">

@@ -13,7 +13,7 @@ const Instractor = () => {
         <table className="table">
           {/* head */}
           <thead>
-            <tr className="text-xl">
+            <tr className="md:text-xl">
               <th>#</th>
               <th>Image</th>
               <th>Name</th>
@@ -23,7 +23,7 @@ const Instractor = () => {
           </thead>
           <tbody>
             {loadData.map((item, idx) => (
-              <tr key={item._id} className="hover text-lg">
+              <tr key={item._id} className="hover md:text-lg">
                 <td>
                   <label>{idx + 1}</label>
                 </td>

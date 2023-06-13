@@ -19,7 +19,7 @@ const PopularInstuctor = () => {
         <table className="table">
           {/* head */}
           <thead>
-            <tr className="text-xl">
+            <tr className="md:text-xl">
               <th>#</th>
               <th>Image</th>
               <th>Name</th>
@@ -29,7 +29,7 @@ const PopularInstuctor = () => {
           </thead>
           <tbody>
             {instructors.map((item, idx) => (
-              <tr key={item._id} className="hover text-lg">
+              <tr key={item._id} className="hover md:text-lg">
                 <td>
                   <label>{idx + 1}</label>
                 </td>
@@ -50,7 +50,7 @@ const PopularInstuctor = () => {
           </tbody>
         </table>
         <div className="text-center w-full mt-12">
-      <button className="btn btn-outline w-1/3"><Link to='/instructor'>See All Instructor</Link></button>
+      <button className="btn btn-outline md:w-1/3"><Link to='/instructor'>See All Instructor</Link></button>
       </div>
       </div>
         </div>

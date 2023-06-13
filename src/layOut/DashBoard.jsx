@@ -59,6 +59,7 @@ const DashBoard = () => {
     </>
   );
   return (
+    <>
     <div className="drawer">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
@@ -92,7 +93,6 @@ const DashBoard = () => {
               </span>
               <span className="text-orange-600"> SpeakEasy </span>{" "}
               <span className="text-blue-600"> Language</span>
-              <span className="text-green-600">Institute</span>
             </a>
           </div>
           <div className="flex-none hidden lg:block">
@@ -102,7 +102,6 @@ const DashBoard = () => {
             </ul>
           </div>
         </div>
-        <Outlet></Outlet>
       </div>
       <div className="drawer-side z-50">
         <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
@@ -112,6 +111,8 @@ const DashBoard = () => {
         </ul>
       </div>
     </div>
+    <Outlet></Outlet>
+    </>
   );
 };
 
