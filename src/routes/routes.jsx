@@ -8,7 +8,9 @@ import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import Class from "../pages/classes/class/Class";
 import Instractor from "../pages/instractor/Instractor";
-import DashBoard from "../dashBoard/dashBoard";
+import DashBoard from "../layOut/DashBoard";
+import AddClass from "../dashBoard/Instructor/addAClass/AddClass";
+import MyClass from "../dashBoard/Instructor/myClass/MyClass";
 
   const router = createBrowserRouter([
     {
@@ -43,8 +45,17 @@ import DashBoard from "../dashBoard/dashBoard";
     },
     {
       path : '/dashboard',
-      element : <DashBoard></DashBoard>,
-      loader : ()=> fetch('')
+      element : <DashBoard></DashBoard>, 
+      children : [
+        {
+          path : '/dashboard/addClass',
+          element : <AddClass></AddClass>
+        },
+        {
+          path : '/dashboard/myClass',
+          element : <MyClass></MyClass>
+        }
+      ]
     }
   ]);
 
