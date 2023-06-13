@@ -11,25 +11,20 @@ import useUser from "../hooks/useUser";
 
 const Cart = ({singleClass}) => {
   const {user} = useContext(AuthContext)
-    const [disable, setDisable] = useState(false)
     const location = useLocation()
     const navigate = useNavigate()
+    const [role, setRole] = useState('student')
     const [users] = useUser();
     
     // console.log(user);
-    const currentUser = users.find(item=> item?.email === user?.email)
-
-    useEffect(()=>{
-      if(user){
-        setDisable(true)
-      }
-      if(user && users){
-        if(currentUser?.role === 'student'){
-          setDisable(false)
-        }
     
+    useEffect(()=>{
+      if(user && users){
+        const currentUser = users.find(item=> item?.email === user?.email)
+        setRole(currentUser?.role);
       }
-    },[currentUser, user, users])
+    })
+    console.log(role);
     const handleSelect =(id)=>{
       if(!user){
         Swal.fire({
@@ -49,7 +44,6 @@ const Cart = ({singleClass}) => {
         })
         return
       }
-      setDisable(true)
       console.log(id);
     }
     return (
@@ -64,10 +58,13 @@ const Cart = ({singleClass}) => {
             <p>Total Enroll : {singleClass.enrolled}</p>
             <h3 className="font-semibold text-lg">Instructor : {singleClass.instructor}</h3>
             <div className="card-actions justify-end">
-              <button disabled={disable} onClick={()=> handleSelect(singleClass._id)} className="btn">
+              {user ? <button disabled={role==='student' ? false : true} onClick={()=> handleSelect(singleClass._id)} className="btn">
               <FaRegHeart />
                 select
-              </button>
+              </button> : <button onClick={()=> handleSelect(singleClass._id)} className="btn">
+              <FaRegHeart />
+                select
+              </button>}
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ const useUser = () => {
     const {data : users = [], isLoading : loading, refetch} = useQuery({
         queryKey : ['users'],
         queryFn : async()=>{
-            const res = await fetch('http://localhost:5000/user')
+                const res = await fetch('http://localhost:5000/user')
             return res.json();
         }
     })

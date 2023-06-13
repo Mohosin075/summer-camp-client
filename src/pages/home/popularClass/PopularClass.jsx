@@ -4,7 +4,6 @@ import Cart from "../../../components/Cart";
 
 const PopularClass = () => {
     const loadPopularData = useLoaderData();
-    console.log(loadPopularData);
     return (
         <div className="my-20">
             <SetPageTitle title='Popular Class' desc='Explore our popular language courses, designed to immerse you in the beauty of language and culture'></SetPageTitle>
