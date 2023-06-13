@@ -1,10 +1,37 @@
 /* eslint-disable react/prop-types */
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
+import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
+import { Navigate, useLocation } from "react-router-dom";
+
+
 
 const Cart = ({singleClass}) => {
+  const {user} = useContext(AuthContext)
     const [disable, setDisable] = useState(false)
+    const location = useLocation()
+    const handleSelect =(id)=>{
+      if(!user){
+        Swal.fire({
+          title: 'Login first',
+          text: "Please Login, then select your class!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Login Now'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            <Navigate to="/" state={{ from: location }} replace > </Navigate>
+          }
+        })
+        return
+      }
+      setDisable(true)
+      console.log(id);
+    }
     return (
         <div key={singleClass._id} className="card w-full glass">
           <figure>
@@ -17,7 +44,7 @@ const Cart = ({singleClass}) => {
             <p>Total Enroll : {singleClass.enrolled}</p>
             <h3 className="font-semibold text-lg">Instructor : {singleClass.instructor}</h3>
             <div className="card-actions justify-end">
-              <button disabled={disable} onClick={()=> setDisable(true)} className="btn">
+              <button disabled={disable} onClick={()=> handleSelect(singleClass._id)} className="btn">
               <FaRegHeart />
                 select
               </button>

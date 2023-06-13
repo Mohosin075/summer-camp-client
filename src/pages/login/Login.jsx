@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import { useContext, useState } from "react";
@@ -9,6 +9,8 @@ import SocialLogin from "../../components/SocialLogin";
 const Login = () => {
     const [show, setShow] = useState(false)
     const {signIn} = useContext(AuthContext)
+    let from = location.state?.from?.pathname || "/";
+    const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -22,6 +24,7 @@ const Login = () => {
         const loggedUser = result.user
         console.log(loggedUser);    
         toast.success('user login successfull!')
+        navigate(from, { replace: true });
     })
     .catch(err=>{
         console.log(err);

@@ -26,9 +26,8 @@ const NavBar = () => {
       <li>
         <Link to="/classes">Classes</Link>
       </li>
-      {/* TODO : conditional  */}
       <li>
-        <Link to="/dashboard ">Dashboard </Link>
+        <Link to="/dashboard">Dashboard </Link>
       </li>
         {user ? <div className="flex flex-col md:flex-row md:items-center mt-5 md:mt-0" ><span className="tooltip" data-tip={user?.displayName}><img   className="w-12 h-12 mb-2 md:mb-0 cursor-pointer bg-cover bg-center mx-4 rounded-full" src={user?.photoURL} alt="" /></span><button onClick={handleLogOut} className="btn btn-outline btn-sm">Log Out</button></div>  : <Link to='/login'>
           <button className="btn btn-outline btn-sm">login</button>

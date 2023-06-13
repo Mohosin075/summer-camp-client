@@ -11,6 +11,7 @@ import Instractor from "../pages/instractor/Instractor";
 import DashBoard from "../layOut/DashBoard";
 import AddClass from "../dashBoard/Instructor/addAClass/AddClass";
 import MyClass from "../dashBoard/Instructor/myClass/MyClass";
+import PrivateRoutes from "./PrivateRoutes";
 
   const router = createBrowserRouter([
     {
@@ -45,7 +46,7 @@ import MyClass from "../dashBoard/Instructor/myClass/MyClass";
     },
     {
       path : '/dashboard',
-      element : <DashBoard></DashBoard>, 
+      element : <PrivateRoutes><DashBoard></DashBoard></PrivateRoutes>, 
       children : [
         {
           path : '/dashboard/addClass',
