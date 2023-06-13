@@ -6,6 +6,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import useUser from "../hooks/useUser";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 
 
@@ -13,7 +14,9 @@ const Cart = ({singleClass}) => {
   const {user} = useContext(AuthContext)
     const location = useLocation()
     const navigate = useNavigate()
+    const [axiosSecure] = useAxiosSecure()
     const [role, setRole] = useState('student')
+    const [red, setRed] = useState('white')
     const [users] = useUser();
     
     // console.log(user);
@@ -22,9 +25,12 @@ const Cart = ({singleClass}) => {
       if(user && users){
         const currentUser = users.find(item=> item?.email === user?.email)
         setRole(currentUser?.role);
+        if(singleClass?.seats === 0){
+          setRed('red')
+          console.log(red);
+        }
       }
     })
-    console.log(role);
     const handleSelect =(id)=>{
       if(!user){
         Swal.fire({
@@ -44,10 +50,16 @@ const Cart = ({singleClass}) => {
         })
         return
       }
-      console.log(id);
+      const studentEmail = {studentEmail : user?.email}
+      axiosSecure.post(`/select/${id}`, studentEmail)
+      .then(data=>{
+        console.log("after select response", data);
+      })
+      
+
     }
     return (
-        <div key={singleClass._id} className={`card w-full glass}`}>
+        <div key={singleClass._id} className={`card w-full  glass ${user && red==='red' && 'bg-red-600'}}`}>
           <figure>
             <img src={singleClass.image} alt="car!" />
           </figure>

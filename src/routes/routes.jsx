@@ -14,6 +14,8 @@ import MyClass from "../dashBoard/Instructor/myClass/MyClass";
 import PrivateRoutes from "./PrivateRoutes";
 import ForgetPass from "../pages/forgetPass/ForgetPass";
 import DashBoardHome from "../dashBoard/dashBoardHome/DashBoardHome";
+import SelectedClass from "../dashBoard/students/selectedClass/SelectedClass";
+import EnrollClass from "../dashBoard/students/enrollClass/EnrollClass";
 
   const router = createBrowserRouter([
     {
@@ -66,7 +68,15 @@ import DashBoardHome from "../dashBoard/dashBoardHome/DashBoardHome";
         {
           path : '/dashboard/myClass',
           element : <MyClass></MyClass>
-        }
+        },
+        {
+          path : '/dashboard/selectedClass',
+          element : <SelectedClass></SelectedClass>
+        },
+        {
+          path : '/dashboard//elrollClass',
+          element : <EnrollClass></EnrollClass>
+        },
       ]
     }
   ]);
