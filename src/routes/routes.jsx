@@ -12,6 +12,7 @@ import DashBoard from "../layOut/DashBoard";
 import AddClass from "../dashBoard/Instructor/addAClass/AddClass";
 import MyClass from "../dashBoard/Instructor/myClass/MyClass";
 import PrivateRoutes from "./PrivateRoutes";
+import ForgetPass from "../pages/forgetPass/ForgetPass";
 
   const router = createBrowserRouter([
     {
@@ -41,6 +42,10 @@ import PrivateRoutes from "./PrivateRoutes";
             path : '/classes',
             element : <Class></Class>,
             loader : ()=> fetch('http://localhost:5000/classes')
+        },
+        {
+            path : '/forgetPass',
+            element : <ForgetPass></ForgetPass>,
         },
       ]
     },

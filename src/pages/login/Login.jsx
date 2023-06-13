@@ -4,13 +4,13 @@ import { Helmet } from "react-helmet-async";
 import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProvider";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import SocialLogin from "../../components/SocialLogin";
 const Login = () => {
-    const [show, setShow] = useState(false)
-    const {signIn} = useContext(AuthContext)
-    let from = location.state?.from?.pathname || "/";
-    const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+  const { signIn } = useContext(AuthContext);
+  let from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -18,18 +18,17 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     signIn(data.email, data.password)
-    .then(result =>{
-        const loggedUser = result.user
-        console.log(loggedUser);    
-        toast.success('user login successfull!')
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        toast.success("user login successfull!");
         navigate(from, { replace: true });
-    })
-    .catch(err=>{
+      })
+      .catch((err) => {
         console.log(err);
-        toast.error(err.message)
-    })
+        toast.error(err.message);
+      });
   };
   return (
     <>
@@ -63,16 +62,26 @@ const Login = () => {
                   <span className="label-text">Password*</span>
                 </label>
                 <div className="flex items-center justify-between">
-                <input
-                  type={show ? 'text' : 'password'}
-                  {...register("password", {
-                    required: true,
-                  })}
-                  placeholder="password"
-                  className="input input-bordered relative w-full"
-                />
-                <span className="absolute right-10 p-2 cursor-pointer" onClick={()=>setShow(!show)}>{show ? <FaEye /> : <FaEyeSlash />}</span>
+                  <input
+                    type={show ? "text" : "password"}
+                    {...register("password", {
+                      required: true,
+                    })}
+                    placeholder="password"
+                    className="input input-bordered relative w-full"
+                  />
+                  <span
+                    className="absolute right-10 p-2 cursor-pointer"
+                    onClick={() => setShow(!show)}
+                  >
+                    {show ? <FaEye /> : <FaEyeSlash />}
+                  </span>
                 </div>
+                <label className="label">
+                  <Link to='/forgetPass' className="label-text-alt link link-hover">
+                    Forgot password?
+                  </Link>
+                </label>
               </div>
               <div className="form-control mt-6">
                 <input
@@ -84,7 +93,7 @@ const Login = () => {
             </form>
             <div className="text-center mb-10">
               <p>
-                New to this site! Please {" "}
+                New to this site! Please{" "}
                 <Link to="/register" className="hover:underline text-blue-500">
                   Register
                 </Link>
