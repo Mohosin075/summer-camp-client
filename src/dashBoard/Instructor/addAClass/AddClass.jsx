@@ -7,8 +7,11 @@ import { useNavigate } from "react-router-dom";
 
 const AddClass = () => {
   const { register, handleSubmit } = useForm();
-  const { user } = useContext(AuthContext); 
-  const navigate = useNavigate()
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${
+    import.meta.env.VITE_image_upload_token
+  }`;
 
   const onSubmit = (data) => {
     Swal.fire({
@@ -22,6 +25,19 @@ const AddClass = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(data);
+
+        const formData = new FormData();
+        formData.append("image", data.image[0]);
+
+        fetch(img_hosting_url, {
+          method: "POST",
+          body: formData,
+        })
+          .then((res) => res.json())
+          .then((imageResponse) => {
+            const image = imageResponse.data.display_url;
+          });
+
         const classData = {
           name: data.name,
           image: data.image[0],
@@ -34,15 +50,13 @@ const AddClass = () => {
 
         console.log(classData);
         Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Added Successfully',
-            showConfirmButton: false,
-            timer: 1500
-          })
-        navigate('/dashboard/myClass')
-
-
+          position: "top-end",
+          icon: "success",
+          title: "Added Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        // navigate('/dashboard/myClass')
       }
     });
   };
