@@ -49,7 +49,11 @@ const MyClass = () => {
                 </td>
                 <td>{item.name}</td>
                 <td>{item.email}</td>
-                <td>{item.status}</td>
+                <td className={`${
+                    item.status === "approved"
+                      ? "text-green-500"
+                      : "text-red-600"
+                  } text-lg`}>{item.status}</td>
                 <td className="text-center">{item.enrolled}</td>
                 <td className="text-right">${item.price}</td>
                 <td>{item.status === 'denied' &&

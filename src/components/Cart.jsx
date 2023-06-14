@@ -95,7 +95,7 @@ const Cart = ({singleClass}) => {
           <figure>
             <img src={singleClass.image} alt="car!" />
           </figure>
-          <div className={`card-body rounded-lg ${singleClass.seats ===0 ? 'bg-red-600' : ''}`}>
+          <div className={`card-body rounded-b-lg ${singleClass.seats ===0 ? 'bg-red-600' : ''}`}>
             <h2 className="card-title">{singleClass.name}</h2>
             <p className={`${singleClass.seats ===0 ? 'text-white' : ''}`}>Available Seats : {singleClass.seats}</p>
             <p>Price : ${singleClass.price}</p>

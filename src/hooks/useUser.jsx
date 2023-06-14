@@ -4,7 +4,11 @@ const useUser = () => {
     const {data : users = [], isLoading : loading, refetch} = useQuery({
         queryKey : ['users'],
         queryFn : async()=>{
-                const res = await fetch('http://localhost:5000/user')
+                const res = await fetch('http://localhost:5000/user', {
+                    headers : {
+                     authorization : `Bearer ${localStorage.getItem('secret-access-token')}`
+                    }
+                 })
             return res.json();
         }
     })

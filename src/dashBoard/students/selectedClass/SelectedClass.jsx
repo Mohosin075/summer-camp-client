@@ -2,10 +2,14 @@
 import SetPageTitle from '../../../components/setPageTitle';
 import Swal from 'sweetalert2';
 import useSelect from '../../../hooks/useSelect';
+import { Link } from 'react-router-dom';
 const SelectedClass = () => {
     // const [selectedItems, setSelectedItems] = useState([])
     const [selectedItems , , refetch] = useSelect()
 
+    const handlePay =(id)=>{
+      console.log(id);
+    }
 
     const handleRemove =(id)=>{
         Swal.fire({
@@ -20,7 +24,12 @@ const SelectedClass = () => {
             if (result.isConfirmed) {
 
                 fetch(`http://localhost:5000/selectItemDelete/${id}`, {
-                    method : 'DELETE'
+
+                    method : 'DELETE',
+                    headers : {
+                      authorization : `Bearer ${localStorage.getItem('secret-access-token')}`
+                     }
+
                 })
                 .then(res=>res.json())
                 .then(data=>{
@@ -78,12 +87,13 @@ const SelectedClass = () => {
                 <td className="text-center">{item.enrolled}</td>
                 <td className="text-right">${item.price}</td>
                 <td>
-                  <button
+                  <Link to={`/dashboard/pay/${item._id}`}><button
+                   onClick={()=>handlePay(item._id)}
                     type="text"
                     className="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded"
                   >
                     pay
-                  </button>
+                  </button></Link>
                 </td>
                 <td>
                   <button onClick={()=>handleRemove(item._id)}
