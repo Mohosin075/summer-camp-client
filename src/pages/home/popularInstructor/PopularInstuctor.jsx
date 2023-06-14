@@ -50,7 +50,7 @@ const PopularInstuctor = () => {
           </tbody>
         </table>
         <div className="text-center w-full mt-12">
-      <button className="btn btn-outline md:w-1/3"><Link to='/instructor'>See All Instructor</Link></button>
+        <Link to='/instructor'><button className="btn btn-outline md:w-1/3">See All Instructor</button></Link>
       </div>
       </div>
         </div>

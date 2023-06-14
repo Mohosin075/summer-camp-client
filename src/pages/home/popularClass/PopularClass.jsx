@@ -12,8 +12,8 @@ const PopularClass = () => {
         <Cart key={singleClass._id} singleClass={singleClass}></Cart>
       ))}
     </div>
-      <div className="text-center w-full mt-12">
-      <button className="btn btn-outline md:w-1/3"><Link to='/classes'>See All Class</Link></button>
+      <div className="text-center w-full mt-12"><Link to='/classes'>
+      <button className="btn btn-outline md:w-1/3">See All Class</button></Link>
       </div>
         </div>
     );
