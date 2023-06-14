@@ -56,9 +56,6 @@ const ManageClass = () => {
       }
     });
   };
-  const handleFeadBack = (id) => {
-    console.log("feadback", id);
-  };
   return (
     <div className="my-20">
       <SetPageTitle

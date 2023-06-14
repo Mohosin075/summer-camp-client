@@ -3,6 +3,7 @@ import SetPageTitle from "../../../components/setPageTitle";
 import useClass from "../../../hooks/useClass";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 const MyClass = () => {
   const [classes] = useClass();
@@ -51,13 +52,15 @@ const MyClass = () => {
                 <td>{item.status}</td>
                 <td className="text-center">{item.enrolled}</td>
                 <td className="text-right">${item.price}</td>
-                <td>
-                  <button
-                    type="submit"
-                    className="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded"
-                  >
-                    feadback
-                  </button>
+                <td>{item.status === 'denied' &&
+                  <Link to={`/dashboard/feadback/${item._id}`}>
+                    <button
+                      type="text"
+                      className="bg-sky-600 hover:bg-sky-800 text-white font-bold py-2 px-4 rounded"
+                    >
+                      feadback
+                    </button>
+                  </Link>}
                 </td>
                 <td>
                   <button

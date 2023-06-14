@@ -1,11 +1,18 @@
 import { useParams } from "react-router-dom";
 import useClass from "../../../hooks/useClass";
 import Swal from "sweetalert2";
+import useUser from "../../../hooks/useUser";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 
 const FeadBack = () => {
     const {id} = useParams()
     const [classes] = useClass()
+    const {user} = useContext(AuthContext)
+    const [users] = useUser()
+    const currentUser = users.find(item=> item?.email === user?.email)
+    console.log(currentUser);
     const data =  classes.find(item=>item._id === id);
     const handleFeadbackSubmit=(e)=>{
         e.preventDefault();
@@ -14,6 +21,9 @@ const FeadBack = () => {
         
         const feadbackText = e.target.feadback.value
         feadbackData.feadback = feadbackText
+        feadbackData.role = currentUser?.role
+
+        console.log(feadbackData);
         
 
 
