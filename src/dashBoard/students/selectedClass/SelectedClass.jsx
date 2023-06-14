@@ -1,18 +1,10 @@
 
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../../providers/AuthProvider';
 import SetPageTitle from '../../../components/setPageTitle';
 import Swal from 'sweetalert2';
+import useSelect from '../../../hooks/useSelect';
 const SelectedClass = () => {
-    const {user}  = useContext(AuthContext)
-    const [selectedItems, setSelectedItems] = useState([])
-    useEffect(()=>{
-        fetch(`http://localhost:5000/select/${user?.email}`)
-        .then(res=>res.json())
-        .then(data=>{
-            setSelectedItems(data);
-        })
-    },[])
+    // const [selectedItems, setSelectedItems] = useState([])
+    const [selectedItems , , refetch] = useSelect()
 
 
     const handleRemove =(id)=>{
@@ -33,12 +25,14 @@ const SelectedClass = () => {
                 .then(res=>res.json())
                 .then(data=>{
                     if(data.deletedCount > 0){
-                        window.location.reload()
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                          )
+                        refetch()
+                        Swal.fire({
+                          position: 'top-end',
+                          icon: 'success',
+                          title: 'successfully delete',
+                          showConfirmButton: false,
+                          timer: 1500
+                        })
                     }
                 })
             }

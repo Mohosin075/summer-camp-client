@@ -50,10 +50,31 @@ const Cart = ({singleClass}) => {
         })
         return
       }
-      const studentEmail = {studentEmail : user?.email}
+      const studentEmail = {studentEmail : user?.email, hide : true}
       axiosSecure.post(`/select/${id}`, studentEmail)
       .then(data=>{
         console.log("after select response", data);
+
+
+        if(data.data.insertedId){
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Select Successfully. chack dashboard!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+
+        if(data.data.message){
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: "Already Select this course. check your dashboard!",
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
       })
       
 
@@ -70,7 +91,7 @@ const Cart = ({singleClass}) => {
             <p>Total Enroll : {singleClass.enrolled}</p>
             <h3 className="font-semibold text-lg">Instructor : {singleClass.instructor}</h3>
             <div className="card-actions justify-end">
-              {user ? <button disabled={role==='student' ? false : true} onClick={()=> handleSelect(singleClass._id)} className="btn">
+              {user ? <button disabled={role==='student' ? false : true } onClick={()=> handleSelect(singleClass._id)} className="btn">
               <FaRegHeart />
                 select
               </button> : <button onClick={()=> handleSelect(singleClass._id)} className="btn">

@@ -24,6 +24,7 @@ const DashBoardHome = () => {
           </div>
         </div>
         <h3 className="text-xl font-semibold mt-2 uppercase">{user?.displayName}</h3>
+        <h3 className="text-md mt-2 lowercase">{user?.email}</h3>
       </div>
       <div className="text-center space-x-5">
         {currentUser?.role === "instructor" && (
