@@ -2,66 +2,65 @@ import Swal from "sweetalert2";
 import SetPageTitle from "../../../components/setPageTitle";
 import useClass from "../../../hooks/useClass";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ManageClass = () => {
-    const [classes, , refetch] = useClass();
-    const handleApproved =(id)=>{
-        Swal.fire({
-            title: "Are you sure?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              axios.patch(`http://localhost:5000/approved/${id}`)
-                .then((data) => {
-                  if (data.data.modifiedCount > 0) {
-                    refetch();
-                    Swal.fire({
-                      position: "top-end",
-                      icon: "success",
-                      title: "update status successfully!",
-                      showConfirmButton: false,
-                      timer: 1500,
-                    });
-                  }
-                });
-            }
-          });
-    }
-    const handleDenied =(id)=>{
-        Swal.fire({
-            title: "Are you sure?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              axios.patch(`http://localhost:5000/denied/${id}`)
-                .then((data) => {
-                  if (data.data.modifiedCount > 0) {
-                    refetch();
-                    Swal.fire({
-                      position: "top-end",
-                      icon: "success",
-                      title: "update status successfully!",
-                      showConfirmButton: false,
-                      timer: 1500,
-                    });
-                  }
-                });
-            }
-          });
-    }
-    const handleFeadBack =(id)=>{
-        console.log(id);
-    }
-    return (
-        <div className="my-20">
+  const [classes, , refetch] = useClass();
+  const handleApproved = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.patch(`http://localhost:5000/approved/${id}`).then((data) => {
+          if (data.data.modifiedCount > 0) {
+            refetch();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "update status successfully!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+      }
+    });
+  };
+  const handleDenied = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.patch(`http://localhost:5000/denied/${id}`).then((data) => {
+          if (data.data.modifiedCount > 0) {
+            refetch();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "update status successfully!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+      }
+    });
+  };
+  const handleFeadBack = (id) => {
+    console.log("feadback", id);
+  };
+  return (
+    <div className="my-20">
       <SetPageTitle
         title="Manage Classes"
         desc="Experience top-notch instruction from our popular instructors, known for their dynamic teaching style and extensive knowledge."
@@ -100,12 +99,25 @@ const ManageClass = () => {
                 <td>{item.name}</td>
                 <td>{item.instructor}</td>
                 <td>{item.email}</td>
-                <td className={`${item.status === 'approved' ? "text-green-500" : 'text-red-600'} text-lg`}>{item.status}</td>
+                <td
+                  className={`${
+                    item.status === "approved"
+                      ? "text-green-500"
+                      : "text-red-600"
+                  } text-lg`}
+                >
+                  {item.status}
+                </td>
                 <td className="text-center">{item.seats}</td>
                 <td className="text-right">${item.price}</td>
                 <td>
-                  <button onClick={()=>handleApproved(item._id)}
-                  disabled={item?.status==='approved' || item?.status==='denied' ? true : false}
+                  <button
+                    onClick={() => handleApproved(item._id)}
+                    disabled={
+                      item?.status === "approved" || item?.status === "denied"
+                        ? true
+                        : false
+                    }
                     type="text"
                     className={`bg-blue-500  text-white font-bold py-2 px-4 rounded`}
                   >
@@ -114,21 +126,28 @@ const ManageClass = () => {
                 </td>
                 <td>
                   <button
-                  onClick={()=>handleDenied(item._id)}
-                  disabled={item?.status==='approved' || item?.status==='denied' ? true : false}
+                    onClick={() => handleDenied(item._id)}
+                    disabled={
+                      item?.status === "approved" || item?.status === "denied"
+                        ? true
+                        : false
+                    }
                     type="text"
                     className="bg-purple-500 text-white font-bold py-2 px-4 rounded"
-                  >Deny
+                  >
+                    Deny
                   </button>
                 </td>
                 <td>
-                  <button
-                  onClick={()=>handleFeadBack(item._id)}
-                    type="text"
-                    className="bg-sky-600 hover:bg-sky-800 text-white font-bold py-2 px-4 rounded"
-                  >
-                     feadback
-                  </button>
+                  <Link to={`/dashboard/feadback/${item._id}`}>
+                    <button
+                      onClick={() => handleFeadBack(item._id)}
+                      type="text"
+                      className="bg-sky-600 hover:bg-sky-800 text-white font-bold py-2 px-4 rounded"
+                    >
+                      feadback
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}
@@ -136,7 +155,7 @@ const ManageClass = () => {
         </table>
       </div>
     </div>
-    );
+  );
 };
 
 export default ManageClass;

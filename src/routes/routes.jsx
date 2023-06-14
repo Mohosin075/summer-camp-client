@@ -18,6 +18,7 @@ import SelectedClass from "../dashBoard/students/selectedClass/SelectedClass";
 import EnrollClass from "../dashBoard/students/enrollClass/EnrollClass";
 import ManageClass from "../dashBoard/admin/manageClass/ManageClass";
 import ManageUser from "../dashBoard/admin/manageUser/ManageUser";
+import FeadBack from "../dashBoard/admin/feadback/FeadBack";
 
   const router = createBrowserRouter([
     {
@@ -86,6 +87,10 @@ import ManageUser from "../dashBoard/admin/manageUser/ManageUser";
         {
           path : '/dashboard/manageUser',
           element : <ManageUser></ManageUser>
+        },
+        {
+          path : '/dashboard/feadback/:id',
+          element : <FeadBack></FeadBack>
         },
       ]
     }
