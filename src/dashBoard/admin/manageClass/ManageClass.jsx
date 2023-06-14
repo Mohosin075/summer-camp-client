@@ -1,9 +1,65 @@
+import Swal from "sweetalert2";
 import SetPageTitle from "../../../components/setPageTitle";
 import useClass from "../../../hooks/useClass";
+import axios from "axios";
 
 const ManageClass = () => {
-    const [classes] = useClass();
-    console.log(classes);
+    const [classes, , refetch] = useClass();
+    const handleApproved =(id)=>{
+        Swal.fire({
+            title: "Are you sure?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              axios.patch(`http://localhost:5000/approved/${id}`)
+                .then((data) => {
+                  if (data.data.modifiedCount > 0) {
+                    refetch();
+                    Swal.fire({
+                      position: "top-end",
+                      icon: "success",
+                      title: "update status successfully!",
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                  }
+                });
+            }
+          });
+    }
+    const handleDenied =(id)=>{
+        Swal.fire({
+            title: "Are you sure?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              axios.patch(`http://localhost:5000/denied/${id}`)
+                .then((data) => {
+                  if (data.data.modifiedCount > 0) {
+                    refetch();
+                    Swal.fire({
+                      position: "top-end",
+                      icon: "success",
+                      title: "update status successfully!",
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                  }
+                });
+            }
+          });
+    }
+    const handleFeadBack =(id)=>{
+        console.log(id);
+    }
     return (
         <div className="my-20">
       <SetPageTitle
@@ -44,28 +100,31 @@ const ManageClass = () => {
                 <td>{item.name}</td>
                 <td>{item.instructor}</td>
                 <td>{item.email}</td>
-                <td className="text-red-500 text-lg">{item.status}</td>
+                <td className={`${item.status === 'approved' ? "text-green-500" : 'text-red-600'} text-lg`}>{item.status}</td>
                 <td className="text-center">{item.seats}</td>
                 <td className="text-right">${item.price}</td>
                 <td>
-                  <button
-                    type="submit"
-                    className="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded"
+                  <button onClick={()=>handleApproved(item._id)}
+                  disabled={item?.status==='approved' || item?.status==='denied' ? true : false}
+                    type="text"
+                    className={`bg-blue-500  text-white font-bold py-2 px-4 rounded`}
                   >
                     Approve
                   </button>
                 </td>
                 <td>
                   <button
-                    type="submit"
-                    className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={()=>handleDenied(item._id)}
+                  disabled={item?.status==='approved' || item?.status==='denied' ? true : false}
+                    type="text"
+                    className="bg-purple-500 text-white font-bold py-2 px-4 rounded"
                   >Deny
-                    
                   </button>
                 </td>
                 <td>
                   <button
-                    type="submit"
+                  onClick={()=>handleFeadBack(item._id)}
+                    type="text"
                     className="bg-sky-600 hover:bg-sky-800 text-white font-bold py-2 px-4 rounded"
                   >
                      feadback

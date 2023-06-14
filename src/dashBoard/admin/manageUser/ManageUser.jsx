@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import SetPageTitle from "../../../components/setPageTitle";
 import useUser from "../../../hooks/useUser";
+import axios from "axios";
 
 const ManageUser = () => {
   const [users, , refetch] = useUser();
@@ -17,12 +18,9 @@ const ManageUser = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/makeInstructor/${id}`, {
-          method: "PATCH",
-        })
-          .then((res) => res.json())
+        axios.patch(`http://localhost:5000/makeInstructor/${id}`)
           .then((data) => {
-            if (data.modifiedCount > 0) {
+            if (data.data.modifiedCount > 0) {
               refetch();
               Swal.fire({
                 position: "top-end",
@@ -47,12 +45,9 @@ const ManageUser = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/makeAdmin/${id}`, {
-          method: "PATCH",
-        })
-          .then((res) => res.json())
+        axios.patch(`http://localhost:5000/makeAdmin/${id}`)
           .then((data) => {
-            if (data.modifiedCount > 0) {
+            if (data.data.modifiedCount > 0) {
               refetch();
               Swal.fire({
                 position: "top-end",

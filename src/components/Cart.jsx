@@ -15,8 +15,7 @@ const Cart = ({singleClass}) => {
     const location = useLocation()
     const navigate = useNavigate()
     const [axiosSecure] = useAxiosSecure()
-    const [role, setRole] = useState('student')
-    const [red, setRed] = useState('white')
+    const [hide, setHide] = useState(false)
     const [users] = useUser();
     
     // console.log(user);
@@ -24,13 +23,24 @@ const Cart = ({singleClass}) => {
     useEffect(()=>{
       if(user && users){
         const currentUser = users.find(item=> item?.email === user?.email)
-        setRole(currentUser?.role);
+        console.log(currentUser?.role);
+        if(currentUser?.role ==='admin'){
+          setHide(true)
+        }else if(currentUser?.role ==='instructor'){
+          setHide(true)
+        }
+
         if(singleClass?.seats === 0){
-          setRed('red')
-          console.log(red);
+          setHide(true)
         }
       }
     })
+
+
+    // disabled={role==='student' ? false : true }
+
+
+
     const handleSelect =(id)=>{
       if(!user){
         Swal.fire({
@@ -57,6 +67,7 @@ const Cart = ({singleClass}) => {
 
 
         if(data.data.insertedId){
+          setHide(true)
           Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -80,24 +91,21 @@ const Cart = ({singleClass}) => {
 
     }
     return (
-        <div key={singleClass._id} className={`card w-full  glass ${user && red==='red' && 'bg-red-600'}}`}>
+        <div key={singleClass._id} className={`card glass w-full }`}>
           <figure>
             <img src={singleClass.image} alt="car!" />
           </figure>
-          <div className="card-body">
+          <div className={`card-body rounded-lg ${singleClass.seats ===0 ? 'bg-red-600' : ''}`}>
             <h2 className="card-title">{singleClass.name}</h2>
-            <p>Available Seats : {singleClass.seats}</p>
+            <p className={`${singleClass.seats ===0 ? 'text-white' : ''}`}>Available Seats : {singleClass.seats}</p>
             <p>Price : ${singleClass.price}</p>
             <p>Total Enroll : {singleClass.enrolled}</p>
             <h3 className="font-semibold text-lg">Instructor : {singleClass.instructor}</h3>
             <div className="card-actions justify-end">
-              {user ? <button id="selectBtn" disabled={role==='student' ? false : true } onClick={()=> handleSelect(singleClass._id)} className="btn">
+              <button id="selectBtn" disabled={hide} onClick={()=> handleSelect(singleClass._id)} className="btn">
               <FaRegHeart />
                 select
-              </button> : <button onClick={()=> handleSelect(singleClass._id)} className="btn">
-              <FaRegHeart />
-                select
-              </button>}
+              </button>
             </div>
           </div>
         </div>
