@@ -16,6 +16,8 @@ import ForgetPass from "../pages/forgetPass/ForgetPass";
 import DashBoardHome from "../dashBoard/dashBoardHome/DashBoardHome";
 import SelectedClass from "../dashBoard/students/selectedClass/SelectedClass";
 import EnrollClass from "../dashBoard/students/enrollClass/EnrollClass";
+import ManageClass from "../dashBoard/admin/manageClass/ManageClass";
+import ManageUser from "../dashBoard/admin/manageUser/ManageUser";
 
   const router = createBrowserRouter([
     {
@@ -76,6 +78,14 @@ import EnrollClass from "../dashBoard/students/enrollClass/EnrollClass";
         {
           path : '/dashboard//elrollClass',
           element : <EnrollClass></EnrollClass>
+        },
+        {
+          path : '/dashboard/manageClass',
+          element : <ManageClass></ManageClass>
+        },
+        {
+          path : '/dashboard/manageUser',
+          element : <ManageUser></ManageUser>
         },
       ]
     }

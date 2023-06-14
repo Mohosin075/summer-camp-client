@@ -91,7 +91,7 @@ const Cart = ({singleClass}) => {
             <p>Total Enroll : {singleClass.enrolled}</p>
             <h3 className="font-semibold text-lg">Instructor : {singleClass.instructor}</h3>
             <div className="card-actions justify-end">
-              {user ? <button disabled={role==='student' ? false : true } onClick={()=> handleSelect(singleClass._id)} className="btn">
+              {user ? <button id="selectBtn" disabled={role==='student' ? false : true } onClick={()=> handleSelect(singleClass._id)} className="btn">
               <FaRegHeart />
                 select
               </button> : <button onClick={()=> handleSelect(singleClass._id)} className="btn">

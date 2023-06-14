@@ -8,7 +8,7 @@ const DashBoardHome = () => {
   const { user } = useContext(AuthContext);
   const [users] = useUser();
   const currentUser = users.find((item) => item.email === user.email);
-  
+
   return (
     <div className="my-20">
       <span className="uppercase">
@@ -23,28 +23,46 @@ const DashBoardHome = () => {
             <img src={user?.photoURL} />
           </div>
         </div>
-        <h3 className="text-xl font-semibold mt-2 uppercase">{user?.displayName}</h3>
+        <h3 className="text-xl font-semibold mt-2 uppercase">
+          {user?.displayName}
+        </h3>
         <h3 className="text-md mt-2 lowercase">{user?.email}</h3>
       </div>
       <div className="text-center space-x-5">
         {currentUser?.role === "instructor" && (
           <>
-            <button className="btn btn-info btn-outline">
-              <Link to="/dashboard/addClass">Add A Class</Link>
-            </button>
-            <button className="btn btn-primary btn-outline">
-              <Link to="/dashboard/myClass">My Class</Link>
-            </button>
+            <Link to="/dashboard/addClass">
+              <button className="btn btn-info btn-outline">Add A Class</button>
+            </Link>
+            <Link to="/dashboard/myClass">
+              <button className="btn btn-primary btn-outline">My Class</button>
+            </Link>
           </>
         )}
         {currentUser?.role === "student" && (
           <>
-            <button className="btn btn-info btn-outline">
-            <Link to="/dashboard/selectedClass">My Selected Class</Link>
-            </button>
-            <button className="btn btn-primary btn-outline">
-            <Link to="/dashboard/elrollClass">My Enrolled Classes</Link>
-            </button>
+            <Link to="/dashboard/selectedClass">
+              <button className="btn btn-info btn-outline">
+                My Selected Class
+              </button>
+            </Link>
+            <Link to="/dashboard/elrollClass">
+              <button className="btn btn-primary btn-outline">
+                My Enrolled Classes
+              </button>
+            </Link>
+          </>
+        )}
+        {currentUser?.role === "admin" && (
+          <>
+            <Link to="/dashboard/manageUser">
+              <button className="btn btn-info btn-outline">Manage Users</button>
+            </Link>
+            <Link to="/dashboard/manageClass">
+              <button className="btn btn-primary btn-outline">
+                Manage Classes
+              </button>
+            </Link>
           </>
         )}
       </div>
