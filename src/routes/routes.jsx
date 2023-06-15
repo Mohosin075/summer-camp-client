@@ -20,6 +20,7 @@ import ManageClass from "../dashBoard/admin/manageClass/ManageClass";
 import ManageUser from "../dashBoard/admin/manageUser/ManageUser";
 import FeadBack from "../dashBoard/admin/feadback/FeadBack";
 import Pay from "../dashBoard/students/pay/Pay";
+import AdminRoutes from "./AdminRoutes";
 
   const router = createBrowserRouter([
     {
@@ -83,11 +84,11 @@ import Pay from "../dashBoard/students/pay/Pay";
         },
         {
           path : '/dashboard/manageClass',
-          element : <ManageClass></ManageClass>
+          element : <AdminRoutes><ManageClass></ManageClass></AdminRoutes>
         },
         {
           path : '/dashboard/manageUser',
-          element : <ManageUser></ManageUser>
+          element : <AdminRoutes><ManageUser></ManageUser></AdminRoutes>
         },
         {
           path : '/dashboard/feadback/:id',
