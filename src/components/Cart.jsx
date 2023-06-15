@@ -68,6 +68,7 @@ const Cart = ({singleClass}) => {
 
         if(data.data.insertedId){
           setHide(true)
+          navigate('/dashboard/selectedClass')
           Swal.fire({
             position: 'top-end',
             icon: 'success',

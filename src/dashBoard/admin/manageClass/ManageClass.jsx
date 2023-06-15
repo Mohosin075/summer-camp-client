@@ -16,7 +16,13 @@ const ManageClass = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.patch(`http://localhost:5000/approved/${id}`).then((data) => {
+        axios.patch(`http://localhost:5000/approved/${id}`, {
+          // Request data
+        }, {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem('secret-access-token')}`
+          }
+        }).then((data) => {
           if (data.data.modifiedCount > 0) {
             refetch();
             Swal.fire({
@@ -41,7 +47,13 @@ const ManageClass = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.patch(`http://localhost:5000/denied/${id}`).then((data) => {
+        axios.patch(`http://localhost:5000/denied/${id}`, {
+          // Request data
+        }, {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem('secret-access-token')}`
+          }
+        }).then((data) => {
           if (data.data.modifiedCount > 0) {
             refetch();
             Swal.fire({

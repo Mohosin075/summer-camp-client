@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 const DashBoard = () => {
   const [users] = useUser();
+  console.log(users);
   const { user,logOut } = useContext(AuthContext);
 
   const currentUser = users.find((current) => current?.email === user?.email);
@@ -64,6 +65,12 @@ const DashBoard = () => {
       <li>
             <Link to="/">Home</Link>
           </li>
+          <li>
+        <Link to="/instructor">Instructors</Link>
+      </li>
+      <li>
+        <Link to="/classes">Classes</Link>
+      </li>
       <li>
       <Link to='/'><button onClick={handleLogOut} className="btn btn-outline">Log Out</button></Link>
           </li>
