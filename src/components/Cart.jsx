@@ -9,7 +9,6 @@ import useUser from "../hooks/useUser";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
 
-
 const Cart = ({singleClass}) => {
   const {user} = useContext(AuthContext)
     const location = useLocation()

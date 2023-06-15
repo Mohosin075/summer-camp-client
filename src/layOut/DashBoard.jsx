@@ -3,6 +3,7 @@ import useUser from "../hooks/useUser";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { toast } from "react-toastify";
+import { FaEdit, FaFileArchive, FaHome, FaMale, FaPlusCircle, FaStore, FaStoreAltSlash, FaUserEdit, FaWrench } from "react-icons/fa";
 
 const DashBoard = () => {
   const [users] = useUser();
@@ -24,13 +25,13 @@ const DashBoard = () => {
       {currentUserRole === "student" && (
         <>
           <li>
-            <Link to="/dashboard">User Home</Link>
+            <Link to="/dashboard"><span><FaHome /></span>User Home</Link>
           </li>
           <li>
-            <Link to="/dashboard/selectedClass">My Selected Class</Link>
+            <Link to="/dashboard/selectedClass"><span><FaStoreAltSlash /></span>My Selected Class</Link>
           </li>
           <li>
-            <Link to="/dashboard/elrollClass">My Enrolled Classes</Link>
+            <Link to="/dashboard/elrollClass"><span><FaWrench /></span>My Enrolled Classes</Link>
           </li>
         </>
       )}
@@ -38,13 +39,13 @@ const DashBoard = () => {
       {currentUserRole === "instructor" && (
         <>
           <li>
-            <Link to="/dashboard">Instructor Home</Link>
+            <Link to="/dashboard"><span><FaHome /></span>Instructor Home</Link>
           </li>
           <li>
-            <Link to="/dashboard/addClass">Add a Class</Link>
+            <Link to="/dashboard/addClass"><span><FaPlusCircle /></span>Add a Class</Link>
           </li>
           <li>
-            <Link to="/dashboard/myClass">My Classes</Link>
+            <Link to="/dashboard/myClass"><span><FaStore /></span>My Classes</Link>
           </li>
         </>
       )}
@@ -52,24 +53,24 @@ const DashBoard = () => {
       {currentUserRole === "admin" && (
         <>
           <li>
-            <Link to="/dashboard">Admin Home</Link>
+            <Link to="/dashboard"><span><FaHome /></span>Admin Home</Link>
           </li>
           <li>
-            <Link to="/dashboard/manageClass">Manage Classes</Link>
+            <Link to="/dashboard/manageClass"><span><FaEdit /></span>Manage Classes</Link>
           </li>
           <li>
-            <Link to="/dashboard/manageUser">Manage Users</Link>
+            <Link to="/dashboard/manageUser"><span><FaUserEdit /></span>Manage Users</Link>
           </li>
         </>
       )}
       <li>
-            <Link to="/">Home</Link>
+            <Link to="/"><span><FaHome /></span>Home</Link>
           </li>
           <li>
-        <Link to="/instructor">Instructors</Link>
+        <Link to="/instructor"><span><FaMale /></span>Instructors</Link>
       </li>
       <li>
-        <Link to="/classes">Classes</Link>
+        <Link to="/classes"><span><FaFileArchive /></span>Classes</Link>
       </li>
       <li>
       <Link to='/'><button onClick={handleLogOut} className="btn btn-outline">Log Out</button></Link>

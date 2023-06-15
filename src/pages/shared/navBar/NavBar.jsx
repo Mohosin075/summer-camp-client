@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { toast } from "react-toastify";
+import { FaFileArchive, FaHome, FaMale, FaDashcube } from 'react-icons/fa';
 
 const NavBar = () => {
     const {user, logOut} = useContext(AuthContext)   
@@ -19,16 +20,16 @@ const NavBar = () => {
   const listItem = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <Link to="/"><span><FaHome /></span>Home</Link>
       </li>
       <li>
-        <Link to="/instructor">Instructors</Link>
+        <Link to="/instructor"><span><FaMale /></span>Instructors</Link>
       </li>
       <li>
-        <Link to="/classes">Classes</Link>
+        <Link to="/classes"><span><FaFileArchive /></span>Classes</Link>
       </li>
       <li>
-        <Link to="/dashboard">Dashboard </Link>
+        <Link to="/dashboard"><span><FaDashcube /></span>Dashboard </Link>
       </li>
         {user ? <div className="flex flex-col md:flex-row md:items-center mt-5 md:mt-0" ><span className="tooltip" data-tip={user?.displayName}><img   className="w-12 h-12 mb-2 md:mb-0 cursor-pointer bg-cover bg-center mx-4 rounded-full" src={user?.photoURL} alt="" /></span><button onClick={handleLogOut} className="btn btn-outline btn-sm">Log Out</button></div>  : <Link to='/login'>
           <button className="btn btn-outline btn-sm">login</button>

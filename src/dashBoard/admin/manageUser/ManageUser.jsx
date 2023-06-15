@@ -5,8 +5,8 @@ import axios from "axios";
 
 const ManageUser = () => {
   const [users, , refetch] = useUser();
-  const alluser = users.filter((item) => item.role === "student");
-  console.log(alluser);
+  // const alluser = users.filter((item) => item.role === "student");
+  // console.log(alluser);
 
   const handleMakeInstructor = (id) => {
     Swal.fire({
@@ -89,12 +89,13 @@ const ManageUser = () => {
               <th>Image</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Role</th>
               <th> Make Instructor</th>
               <th>Make Admin</th>
             </tr>
           </thead>
           <tbody>
-            {alluser.map((item, idx) => (
+            {users.map((item, idx) => (
               <tr key={item._id} className="hover md:text-md">
                 <td>
                   <label>{idx + 1}</label>
@@ -108,9 +109,11 @@ const ManageUser = () => {
                 </td>
                 <td>{item.name}</td>
                 <td>{item.email}</td>
+                <td className={`${item.role === 'admin' && 'text-purple-600' || item.role === 'instructor' && 'text-blue-600' || 'text-red-600'}`}>{item.role}</td>
                 <td>
                   <button
                     onClick={() => handleMakeInstructor(item._id)}
+                    disabled={item.role === 'student' ? false : true}
                     type="submit"
                     className="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded"
                   >
@@ -121,6 +124,7 @@ const ManageUser = () => {
                   <button
                     onClick={() => handleMakeAdmin(item._id)}
                     type="submit"
+                    disabled={item.role === 'student' || item.role === 'instructor' ?  false :true}
                     className="bg-purple-500 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded"
                   >
                     make admin
