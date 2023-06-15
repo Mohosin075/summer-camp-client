@@ -21,6 +21,7 @@ import ManageUser from "../dashBoard/admin/manageUser/ManageUser";
 import FeadBack from "../dashBoard/admin/feadback/FeadBack";
 import Pay from "../dashBoard/students/pay/Pay";
 import AdminRoutes from "./AdminRoutes";
+import InstructorRoutes from "./InstructorRoutes";
 
   const router = createBrowserRouter([
     {
@@ -68,11 +69,11 @@ import AdminRoutes from "./AdminRoutes";
         },
         {
           path : '/dashboard/addClass',
-          element : <AddClass></AddClass>
+          element : <InstructorRoutes><AddClass></AddClass></InstructorRoutes>
         },
         {
           path : '/dashboard/myClass',
-          element : <MyClass></MyClass>
+          element : <InstructorRoutes><MyClass></MyClass></InstructorRoutes>
         },
         {
           path : '/dashboard/selectedClass',
