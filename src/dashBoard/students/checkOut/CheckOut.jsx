@@ -5,12 +5,14 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
 import './checkOut.css'
+import { useNavigate } from "react-router-dom";
 
-const CheckOut = ({ price, selectedItems }) => {
+const CheckOut = ({ price, selectedItems, id }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
   const [cardError, setCardError] = useState("");
+  const navigate = useNavigate()
 
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
@@ -69,13 +71,31 @@ const CheckOut = ({ price, selectedItems }) => {
         .then((data) => {
           console.log(data);
           if (data.insertedId) {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Payment Successfull!",
-              showConfirmButton: false,
-              timer: 1500,
-            });
+
+            fetch(`http://localhost:5000/paymentSuccess/${id}`, {
+              method : 'PATCH',
+              headers : {
+                'content-type' : 'application/json'
+              },
+            })
+            .then(res=>res.json())
+            .then(data=>{
+              if(data.modifiedCount > 0){
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Payment Successfull!",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+
+                navigate('/dashboard/elrollClass')
+
+              }
+            })
+
+
+            
           }
         });
     }

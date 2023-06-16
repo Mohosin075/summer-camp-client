@@ -2,12 +2,13 @@
 import Swal from 'sweetalert2';
 import useSelect from '../../../hooks/useSelect';
 import { Link } from 'react-router-dom';
-import SetPageTitle from '../../../components/SetPageTitle';
 import { Fade } from 'react-awesome-reveal';
+import SetPageTitle from '../../../components/setPageTitle';
 const SelectedClass = () => {
     // const [selectedItems, setSelectedItems] = useState([])
     const [selectedItems , , refetch] = useSelect()
-
+    const pendinItem = selectedItems.filter(item=>item.paymentStatus === 'pending')
+    console.log(pendinItem);
     const handlePay =(id)=>{
       console.log(id);
     }
@@ -56,9 +57,8 @@ const SelectedClass = () => {
         desc="Experience top-notch instruction from our popular instructors, known for their dynamic teaching style and extensive knowledge."
       ></SetPageTitle>
       <div className="overflow-x-auto w-full">
-        <div className='text-end my-4 '><Link><button className='btn btn-wide btn-info text-white mr-5'>Pay</button></Link></div>
         <Fade delay={1e2} cascade damping={1e-1}>
-        <table className="table">
+        {selectedItems.length > 0 &&<table className="table">
           {/* head */}
           <thead>
             <tr className="md:text-xl">
@@ -73,7 +73,7 @@ const SelectedClass = () => {
             </tr>
           </thead>
           <tbody>
-            {selectedItems.map((item, idx) => (
+            {pendinItem.map((item, idx) => (
               <tr key={item._id} className="hover md:text-md">
                 <td>
                   <label>{idx + 1}</label>
@@ -109,7 +109,10 @@ const SelectedClass = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table>}
+        <div>
+            {selectedItems.length===0 && <h2 className='text-center text-red-600 text-lg md:text-2xl'>no class selected!</h2>}
+          </div>
         </Fade>
       </div>
     </div>

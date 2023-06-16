@@ -60,7 +60,7 @@ const Cart = ({singleClass}) => {
         })
         return
       }
-      const studentEmail = {studentEmail : user?.email, hide : true}
+      const studentEmail = {studentEmail : user?.email}
       axiosSecure.post(`/select/${id}`, studentEmail)
       .then(data=>{
         console.log("after select response", data);
