@@ -7,7 +7,6 @@ import { FaEdit, FaFileArchive, FaHome, FaMale, FaPlusCircle, FaStore, FaStoreAl
 
 const DashBoard = () => {
   const [users] = useUser();
-  console.log(users);
   const { user,logOut } = useContext(AuthContext);
 
   const currentUser = users.find((current) => current?.email === user?.email);

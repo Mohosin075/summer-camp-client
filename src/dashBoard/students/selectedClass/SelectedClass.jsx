@@ -55,6 +55,7 @@ const SelectedClass = () => {
         desc="Experience top-notch instruction from our popular instructors, known for their dynamic teaching style and extensive knowledge."
       ></SetPageTitle>
       <div className="overflow-x-auto w-full">
+        <div className='text-end my-4 '><Link><button className='btn btn-wide btn-info text-white mr-5'>Pay</button></Link></div>
         <table className="table">
           {/* head */}
           <thead>
