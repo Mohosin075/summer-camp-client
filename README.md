@@ -1,5 +1,5 @@
 
-# Welcome to SeakEasy Language
+# Welcome to SpeakEasy Language
 
 
 ## foregin language learning school
