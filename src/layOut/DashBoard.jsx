@@ -65,12 +65,6 @@ const DashBoard = () => {
       <li>
             <Link to="/"><span><FaHome /></span>Home</Link>
           </li>
-          <li>
-        <Link to="/instructor"><span><FaMale /></span>Instructors</Link>
-      </li>
-      <li>
-        <Link to="/classes"><span><FaFileArchive /></span>Classes</Link>
-      </li>
       <li>
       <Link to='/'><button onClick={handleLogOut} className="btn btn-outline">Log Out</button></Link>
           </li>

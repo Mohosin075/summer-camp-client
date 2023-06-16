@@ -12,7 +12,7 @@ const Pay = () => {
     const price = parseFloat(total.toFixed(2))
     console.log(price);
     return (
-        <div>
+        <div className="my-20">
             <SetPageTitle title='Payment'></SetPageTitle>
             <Elements stripe={stripePromise}>
             <CheckOut price={price} selectedItems={selectedItems}></CheckOut>

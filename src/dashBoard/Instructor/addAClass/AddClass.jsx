@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../providers/AuthProvider";
-import SetPageTitle from "../../../components/setPageTitle";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import SetPageTitle from "../../../components/SetPageTitle";
+import { Fade } from "react-awesome-reveal";
 
 const AddClass = () => {
   const { register, handleSubmit } = useForm();
@@ -66,6 +67,7 @@ const AddClass = () => {
   return (
     <div className="my-10 md:my-20">
       <SetPageTitle title="Add A Class"></SetPageTitle>
+      <Fade delay={1e2} cascade damping={1e-1}>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="max-w-lg mx-auto p-6 space-y-6 border-2  rounded bg-slate-50 shadow-md"
@@ -163,6 +165,7 @@ const AddClass = () => {
           Add
         </button>
       </form>
+      </Fade>
     </div>
   );
 };

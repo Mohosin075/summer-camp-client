@@ -1,8 +1,9 @@
 import Swal from "sweetalert2";
-import SetPageTitle from "../../../components/setPageTitle";
 import useClass from "../../../hooks/useClass";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import SetPageTitle from "../../../components/SetPageTitle";
+import { Fade } from "react-awesome-reveal";
 
 const ManageClass = () => {
   const [classes, , refetch] = useClass();
@@ -75,6 +76,7 @@ const ManageClass = () => {
         desc="Experience top-notch instruction from our popular instructors, known for their dynamic teaching style and extensive knowledge."
       ></SetPageTitle>
       <div className="overflow-x-auto w-full">
+      <Fade delay={1e2} cascade damping={1e-1}>
         <table className="table">
           {/* head */}
           <thead>
@@ -162,6 +164,7 @@ const ManageClass = () => {
             ))}
           </tbody>
         </table>
+        </Fade>
       </div>
     </div>
   );

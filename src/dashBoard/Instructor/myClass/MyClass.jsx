@@ -1,9 +1,10 @@
 
-import SetPageTitle from "../../../components/setPageTitle";
 import useClass from "../../../hooks/useClass";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { Link } from "react-router-dom";
+import { Fade } from "react-awesome-reveal";
+import SetPageTitle from "../../../components/SetPageTitle";
 
 const MyClass = () => {
   const [classes] = useClass();
@@ -19,6 +20,7 @@ const MyClass = () => {
         desc="Experience top-notch instruction from our popular instructors, known for their dynamic teaching style and extensive knowledge."
       ></SetPageTitle>
       <div className="overflow-x-auto w-full">
+      <Fade delay={1e2} cascade damping={1e-1}>
         <table className="table">
           {/* head */}
           <thead>
@@ -78,6 +80,7 @@ const MyClass = () => {
             ))}
           </tbody>
         </table>
+        </Fade>
       </div>
     </div>
   );

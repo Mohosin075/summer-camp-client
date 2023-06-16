@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import useUser from "../hooks/useUser";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Fade } from "react-awesome-reveal";
 
 
 const Cart = ({singleClass}) => {
@@ -92,9 +93,11 @@ const Cart = ({singleClass}) => {
     }
     return (
         <div key={singleClass._id} className={`card glass w-full }`}>
+          <Fade delay={1e2} duration={3000} damping={1e-3}>
           <figure>
             <img src={singleClass.image} alt="car!" />
           </figure>
+          </Fade>
           <div className={`card-body rounded-b-lg ${singleClass.seats ===0 ? 'bg-red-600' : ''}`}>
             <h2 className="card-title">{singleClass.name}</h2>
             <p className={`${singleClass.seats ===0 ? 'text-white' : ''}`}>Available Seats : {singleClass.seats}</p>

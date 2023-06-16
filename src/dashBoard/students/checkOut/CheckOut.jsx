@@ -15,10 +15,12 @@ const CheckOut = ({ price, selectedItems }) => {
   const [transactionId, setTransactionId] = useState("");
 
   useEffect(() => {
-    axios.post("http://localhost:5000/create-payment-intent", { price }).then((res) => {
-      console.log(res.data.clientSecret);
-      setClientSecret(res.data.clientSecret);
-    });
+    axios
+      .post("http://localhost:5000/create-payment-intent", { price })
+      .then((res) => {
+        console.log(res.data.clientSecret);
+        setClientSecret(res.data.clientSecret);
+      });
   }, []);
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -53,31 +55,31 @@ const CheckOut = ({ price, selectedItems }) => {
         itemName: selectedItems.map((item) => item.name),
       };
 
-      fetch('http://localhost:5000/payment', {
-        method : 'POST', 
-        headers : {
-          'content-type' :'application/json'
+      fetch("http://localhost:5000/payment", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
         },
-        body : JSON.stringify(payment)
+        body: JSON.stringify(payment),
       })
-      .then(res=>res.json())
-      .then(data=>{
-        console.log(data);
-        if(data.insertedId){
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Payment Successfull!',
-            showConfirmButton: false,
-            timer: 1500
-          })
-        }
-      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.insertedId) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Payment Successfull!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
     }
   };
 
   return (
-    <>
+    <div className="px-4 md:px-96 my-10">
       <form onSubmit={handleSubmit}>
         <CardElement
           options={{
@@ -105,11 +107,14 @@ const CheckOut = ({ price, selectedItems }) => {
       </form>
       {cardError && <p className="text-red-600 ml-8 mb-5">{cardError}</p>}
       {transactionId && (
-        <p className="text-green-600 ml-8 mb-5">
-          transaction compleate. transaction id : {transactionId}
-        </p>
+        <><p className="text-green-600 ml-8 mb-5">
+        transaction compleate.
+      </p>
+      <p className="text-green-600 ml-8 mb-5">
+        transaction id : {transactionId}
+      </p></>
       )}
-    </>
+    </div>
   );
 };
 

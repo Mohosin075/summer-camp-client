@@ -1,8 +1,9 @@
 
-import SetPageTitle from '../../../components/setPageTitle';
 import Swal from 'sweetalert2';
 import useSelect from '../../../hooks/useSelect';
 import { Link } from 'react-router-dom';
+import SetPageTitle from '../../../components/SetPageTitle';
+import { Fade } from 'react-awesome-reveal';
 const SelectedClass = () => {
     // const [selectedItems, setSelectedItems] = useState([])
     const [selectedItems , , refetch] = useSelect()
@@ -56,6 +57,7 @@ const SelectedClass = () => {
       ></SetPageTitle>
       <div className="overflow-x-auto w-full">
         <div className='text-end my-4 '><Link><button className='btn btn-wide btn-info text-white mr-5'>Pay</button></Link></div>
+        <Fade delay={1e2} cascade damping={1e-1}>
         <table className="table">
           {/* head */}
           <thead>
@@ -108,6 +110,7 @@ const SelectedClass = () => {
             ))}
           </tbody>
         </table>
+        </Fade>
       </div>
     </div>
     );

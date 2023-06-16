@@ -1,7 +1,8 @@
 
 import { useLoaderData } from "react-router-dom";
-import SetPageTitle from "../../components/setPageTitle";
 import { toast } from "react-toastify";
+import SetPageTitle from "../../components/SetPageTitle";
+import { Fade } from "react-awesome-reveal";
 
 const Instractor = () => {
   const loadData = useLoaderData();
@@ -10,6 +11,7 @@ const Instractor = () => {
     <div className="my-20 px-4 md:px-8">
         <SetPageTitle title='All Instructor' desc='Discover the most sought-after language classes that have captivated learners worldwide.'></SetPageTitle>
       <div className="overflow-x-auto w-full mx-auto">
+      <Fade delay={1e2} cascade damping={1e-1}>
         <table className="table">
           {/* head */}
           <thead>
@@ -43,6 +45,7 @@ const Instractor = () => {
             ))}
           </tbody>
         </table>
+        </Fade>
       </div>
     </div>
   );

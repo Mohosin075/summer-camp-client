@@ -1,7 +1,8 @@
 import Swal from "sweetalert2";
-import SetPageTitle from "../../../components/setPageTitle";
 import useUser from "../../../hooks/useUser";
 import axios from "axios";
+import { Fade } from "react-awesome-reveal";
+import SetPageTitle from "../../../components/SetPageTitle";
 
 const ManageUser = () => {
   const [users, , refetch] = useUser();
@@ -81,6 +82,7 @@ const ManageUser = () => {
         desc="Experience top-notch instruction from our popular instructors, known for their dynamic teaching style and extensive knowledge."
       ></SetPageTitle>
       <div className="overflow-x-auto w-full">
+      <Fade delay={1e2} cascade damping={1e-1}>
         <table className="table">
           {/* head */}
           <thead>
@@ -134,6 +136,7 @@ const ManageUser = () => {
             ))}
           </tbody>
         </table>
+        </Fade>
       </div>
     </div>
   );

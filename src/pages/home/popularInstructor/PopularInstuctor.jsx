@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import SetPageTitle from "../../../components/setPageTitle";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { Fade } from "react-awesome-reveal";
+import SetPageTitle from "../../../components/SetPageTitle";
 
 const PopularInstuctor = () => {
     const [instructors, setInstructors] = useState([])
@@ -16,6 +17,7 @@ const PopularInstuctor = () => {
         <div className="my-20">
             <SetPageTitle title='Popular Instructor' desc='Experience top-notch instruction from our popular instructors, known for their dynamic teaching style and extensive knowledge.'></SetPageTitle>
             <div className="overflow-x-auto w-full mx-auto">
+            <Fade delay={1e2} cascade damping={1e-1}>
         <table className="table">
           {/* head */}
           <thead>
@@ -47,8 +49,10 @@ const PopularInstuctor = () => {
                 </td>
               </tr>
             ))}
+            
           </tbody>
         </table>
+        </Fade>
         <div className="text-center w-full mt-12 mb-5 md:mb-0">
         <Link to='/instructor'><button className="btn btn-outline md:w-1/3">See All Instructor</button></Link>
       </div>

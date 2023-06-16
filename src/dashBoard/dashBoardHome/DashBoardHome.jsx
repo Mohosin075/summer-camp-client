@@ -1,8 +1,9 @@
 import { useContext } from "react";
-import SetPageTitle from "../../components/setPageTitle";
 import { AuthContext } from "../../providers/AuthProvider";
 import useUser from "../../hooks/useUser";
 import { Link } from "react-router-dom";
+import SetPageTitle from "../../components/SetPageTitle";
+import { Fade } from "react-awesome-reveal";
 
 const DashBoardHome = () => {
   const { user } = useContext(AuthContext);
@@ -14,6 +15,7 @@ const DashBoardHome = () => {
       <span className="uppercase">
         <SetPageTitle title={`${currentUser?.role} Dashboard`}></SetPageTitle>
       </span>
+      <Fade delay={1e2} cascade damping={1e-1}>
       <h3 className="text-sm text-center my-8 text-red-500">
         More Details Commign soon.........
       </h3>
@@ -66,6 +68,7 @@ const DashBoardHome = () => {
           </>
         )}
       </div>
+      </Fade>
     </div>
   );
 };
