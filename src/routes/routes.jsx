@@ -32,7 +32,7 @@ import InstructorRoutes from "./InstructorRoutes";
         {
             path : '/',
             element : <Home></Home>,
-            loader : ()=> fetch('http://localhost:5000/polularClass')
+            loader : ()=> fetch('https://summer-school-camp-server-nine.vercel.app/polularClass')
         },
         {
             path : '/login',
@@ -45,12 +45,12 @@ import InstructorRoutes from "./InstructorRoutes";
         {
             path : '/instructor',
             element : <Instractor></Instractor>, 
-            loader : ()=> fetch('http://localhost:5000/instructor')
+            loader : ()=> fetch('https://summer-school-camp-server-nine.vercel.app/instructor')
         },
         {
             path : '/classes',
             element : <Class></Class>,
-            loader : ()=> fetch('http://localhost:5000/classes')
+            loader : ()=> fetch('https://summer-school-camp-server-nine.vercel.app/classes')
         },
         {
             path : '/forgetPass',

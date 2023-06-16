@@ -19,7 +19,7 @@ const ManageUser = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.patch(`http://localhost:5000/makeInstructor/${id}`, {
+        axios.patch(`https://summer-school-camp-server-nine.vercel.app/makeInstructor/${id}`, {
           // Request data
         }, {
           headers: {
@@ -52,7 +52,7 @@ const ManageUser = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.patch(`http://localhost:5000/makeAdmin/${id}`, {
+        axios.patch(`https://summer-school-camp-server-nine.vercel.app/makeAdmin/${id}`, {
           // Request data
         }, {
           headers: {

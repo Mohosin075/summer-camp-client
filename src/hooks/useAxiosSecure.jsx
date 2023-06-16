@@ -6,7 +6,7 @@ const useAxiosSecure = () => {
     const { logOut } = useContext(AuthContext)
     const navigate = useNavigate(); 
     const axiosSecure = axios.create({
-      baseURL: 'http://localhost:5000', 
+      baseURL: 'https://summer-school-camp-server-nine.vercel.app', 
     });
   
     useEffect(() => {

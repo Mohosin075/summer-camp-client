@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
+import './checkOut.css'
 
 const CheckOut = ({ price, selectedItems }) => {
   const stripe = useStripe();
@@ -16,7 +17,7 @@ const CheckOut = ({ price, selectedItems }) => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/create-payment-intent", { price })
+      .post("https://summer-school-camp-server-nine.vercel.app/create-payment-intent", { price })
       .then((res) => {
         console.log(res.data.clientSecret);
         setClientSecret(res.data.clientSecret);
@@ -51,11 +52,13 @@ const CheckOut = ({ price, selectedItems }) => {
         email: user?.email,
         transactionId: paymentMethod.id,
         price,
+        date : new Date(),
+        status : 'service pending',
         itemId: selectedItems.map((item) => item._id),
         itemName: selectedItems.map((item) => item.name),
       };
 
-      fetch("http://localhost:5000/payment", {
+      fetch("https://summer-school-camp-server-nine.vercel.app/payment", {
         method: "POST",
         headers: {
           "content-type": "application/json",
