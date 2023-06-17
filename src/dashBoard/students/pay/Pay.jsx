@@ -11,6 +11,8 @@ const stripePromise = loadStripe(import.meta.env.VITE_payment_gateway_PK);
 const Pay = () => {
     const [selectedItems] = useSelect()
     const {id} = useParams()
+    const selectedItem = selectedItems.find(item=>item._id === id)
+    console.log(selectedItem);
     const total  = selectedItems.reduce((sum, item) => sum + item.price, 0)
     const price = parseFloat(total.toFixed(2))
     console.log(price);
@@ -21,7 +23,7 @@ const Pay = () => {
       </Helmet>
             <SetPageTitle title='Payment'></SetPageTitle>
             <Elements stripe={stripePromise}>
-            <CheckOut price={price} selectedItems={selectedItems} id={id}></CheckOut>
+            <CheckOut price={price} selectedItem={selectedItem} id={id}></CheckOut>
             </Elements>
         </div>
     );

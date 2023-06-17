@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import './checkOut.css'
 import { useNavigate } from "react-router-dom";
 
-const CheckOut = ({ price, selectedItems, id }) => {
+const CheckOut = ({ price, selectedItem, id }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
@@ -16,6 +16,7 @@ const CheckOut = ({ price, selectedItems, id }) => {
 
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
+  const [process, setProcess] = useState(false)
 
   useEffect(() => {
     axios
@@ -36,7 +37,7 @@ const CheckOut = ({ price, selectedItems, id }) => {
     }
 
     console.log("card", card);
-
+    setProcess(true)
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card,
@@ -56,8 +57,8 @@ const CheckOut = ({ price, selectedItems, id }) => {
         price,
         date : new Date(),
         status : 'service pending',
-        itemId: selectedItems.map((item) => item._id),
-        itemName: selectedItems.map((item) => item.name),
+        itemId: selectedItem._id,
+        itemName: selectedItem.name,
       };
 
       fetch("https://summer-school-camp-server-nine.vercel.app/payment", {
@@ -81,6 +82,7 @@ const CheckOut = ({ price, selectedItems, id }) => {
             .then(res=>res.json())
             .then(data=>{
               if(data.modifiedCount > 0){
+                setProcess(false)
                 Swal.fire({
                   position: "top-end",
                   icon: "success",
@@ -123,7 +125,7 @@ const CheckOut = ({ price, selectedItems, id }) => {
         <button
           type="submit"
           className="btn text-white btn-neutral m-8"
-          disabled={!stripe}
+          disabled={!stripe || process}
         >
           Pay
         </button>
