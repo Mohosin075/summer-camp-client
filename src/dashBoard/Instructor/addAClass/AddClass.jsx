@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import SetPageTitle from "../../../components/SetPageTitle";
 import { Fade } from "react-awesome-reveal";
+import { Helmet } from "react-helmet-async";
 
 const AddClass = () => {
   const { register, handleSubmit } = useForm();
@@ -66,6 +67,9 @@ const AddClass = () => {
   };
   return (
     <div className="my-10 md:my-20">
+      <Helmet>
+        <title>SpeckEasy | add class</title>
+      </Helmet>
       <SetPageTitle title="Add A Class"></SetPageTitle>
       <Fade delay={1e2} cascade damping={1e-1}>
       <form

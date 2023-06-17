@@ -3,6 +3,7 @@ import useUser from "../../../hooks/useUser";
 import axios from "axios";
 import { Fade } from "react-awesome-reveal";
 import SetPageTitle from "../../../components/SetPageTitle";
+import { Helmet } from "react-helmet-async";
 
 const ManageUser = () => {
   const [users, , refetch] = useUser();
@@ -77,6 +78,9 @@ const ManageUser = () => {
 
   return (
     <div className="my-20">
+      <Helmet>
+        <title>SpeckEasy | manage users</title>
+      </Helmet>
       <SetPageTitle
         title="Manage Users"
         desc="Experience top-notch instruction from our popular instructors, known for their dynamic teaching style and extensive knowledge."

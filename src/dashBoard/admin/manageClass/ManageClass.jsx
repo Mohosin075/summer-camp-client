@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import SetPageTitle from "../../../components/SetPageTitle";
 import { Fade } from "react-awesome-reveal";
+import { Helmet } from "react-helmet-async";
 
 const ManageClass = () => {
   const [classes, , refetch] = useClass();
@@ -71,6 +72,9 @@ const ManageClass = () => {
   };
   return (
     <div className="my-20">
+      <Helmet>
+        <title>SpeckEasy | manage classes</title>
+      </Helmet>
       <SetPageTitle
         title="Manage Classes"
         desc="Experience top-notch instruction from our popular instructors, known for their dynamic teaching style and extensive knowledge."

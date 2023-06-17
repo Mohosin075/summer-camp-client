@@ -1,4 +1,5 @@
 
+import { Helmet } from "react-helmet-async";
 import SetPageTitle from "../../../components/setPageTitle";
 import useSelect from "../../../hooks/useSelect";
 import Swal from "sweetalert2";
@@ -11,6 +12,9 @@ const EnrollClass = () => {
   console.log(successItem);
   return (
     <>
+    <Helmet>
+        <title>SpeckEasy | enroll class</title>
+      </Helmet>
     <SetPageTitle title='My Enroll Classes'></SetPageTitle>
     <div className="grid md:grid-cols-2 gap-6 my-10">
       {

@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import SetPageTitle from "../../../components/setPageTitle";
 import Cart from "../../../components/Cart";
+import { Helmet } from "react-helmet-async";
 const Class = () => {
   const loadAllClass = useLoaderData();
 
@@ -8,6 +9,9 @@ const Class = () => {
 
   return (
     <div className="my-20">
+      <Helmet>
+        <title>SpeckEasy | classes</title>
+      </Helmet>
         <SetPageTitle title='Select Class for Learn ' desc='Expand your horizons with our foreign language learning program. Gain fluency in a new language through interactive lessons and immersive experiences. Unlock new opportunities and connect with cultures around the world.'></SetPageTitle>
         <div className="grid md:grid-cols-2 grid-flow-row-dense lg:grid-cols-3 gap-10 w-full mx-auto">
       {allApproveClass.map((singleClass) => (

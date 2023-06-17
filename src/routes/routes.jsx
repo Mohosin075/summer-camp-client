@@ -22,6 +22,7 @@ import FeadBack from "../dashBoard/admin/feadback/FeadBack";
 import Pay from "../dashBoard/students/pay/Pay";
 import AdminRoutes from "./AdminRoutes";
 import InstructorRoutes from "./InstructorRoutes";
+import PaymentHistory from "../dashBoard/students/paymentHistory/PaymentHistory";
 
   const router = createBrowserRouter([
     {
@@ -82,6 +83,10 @@ import InstructorRoutes from "./InstructorRoutes";
         {
           path : '/dashboard//elrollClass',
           element : <EnrollClass></EnrollClass>
+        },
+        {
+          path : '/dashboard/paymentHistory',
+          element : <PaymentHistory></PaymentHistory>
         },
         {
           path : '/dashboard/manageClass',

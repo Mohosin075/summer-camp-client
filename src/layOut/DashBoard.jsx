@@ -3,7 +3,7 @@ import useUser from "../hooks/useUser";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { toast } from "react-toastify";
-import { FaEdit, FaFileArchive, FaHome, FaMale, FaPlusCircle, FaStore, FaStoreAltSlash, FaUserEdit, FaWrench } from "react-icons/fa";
+import { FaEdit, FaFileArchive, FaHistory, FaHome, FaMale, FaPlusCircle, FaStore, FaStoreAltSlash, FaUserEdit, FaWrench } from "react-icons/fa";
 
 const DashBoard = () => {
   const [users] = useUser();
@@ -31,6 +31,9 @@ const DashBoard = () => {
           </li>
           <li>
             <Link to="/dashboard/elrollClass"><span><FaWrench /></span>My Enrolled Classes</Link>
+          </li>
+          <li>
+            <Link to="/dashboard/paymentHistory"><span><FaHistory /></span>Payment history</Link>
           </li>
         </>
       )}

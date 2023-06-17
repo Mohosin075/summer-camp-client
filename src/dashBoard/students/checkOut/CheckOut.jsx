@@ -72,7 +72,7 @@ const CheckOut = ({ price, selectedItems, id }) => {
           console.log(data);
           if (data.insertedId) {
 
-            fetch(`http://localhost:5000/paymentSuccess/${id}`, {
+            fetch(`https://summer-school-camp-server-nine.vercel.app/paymentSuccess/${id}`, {
               method : 'PATCH',
               headers : {
                 'content-type' : 'application/json'

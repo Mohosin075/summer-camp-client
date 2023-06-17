@@ -5,6 +5,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { Link } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
 import SetPageTitle from "../../../components/SetPageTitle";
+import { Helmet } from "react-helmet-async";
 
 const MyClass = () => {
   const [classes] = useClass();
@@ -15,6 +16,9 @@ const MyClass = () => {
   console.log(classes);
   return (
     <div className="my-20">
+      <Helmet>
+        <title>SpeckEasy | my class</title>
+      </Helmet>
       <SetPageTitle
         title="My Classes"
         desc="Experience top-notch instruction from our popular instructors, known for their dynamic teaching style and extensive knowledge."

@@ -4,6 +4,7 @@ import useSelect from '../../../hooks/useSelect';
 import { Link } from 'react-router-dom';
 import { Fade } from 'react-awesome-reveal';
 import SetPageTitle from '../../../components/setPageTitle';
+import { Helmet } from 'react-helmet-async';
 const SelectedClass = () => {
     // const [selectedItems, setSelectedItems] = useState([])
     const [selectedItems , , refetch] = useSelect()
@@ -52,6 +53,9 @@ const SelectedClass = () => {
 
     return (
         <div className="my-20">
+          <Helmet>
+        <title>SpeckEasy | selected class</title>
+      </Helmet>
       <SetPageTitle
         title="My Selected Class"
         desc="Experience top-notch instruction from our popular instructors, known for their dynamic teaching style and extensive knowledge."
@@ -66,6 +70,7 @@ const SelectedClass = () => {
               <th>Image</th>
               <th>Name</th>
               <th>Instructor</th>
+              <th>Available Seats</th>
               <th>Total Enrolled</th>
               <th>Price</th>
               <th>Pay</th>
@@ -87,6 +92,7 @@ const SelectedClass = () => {
                 </td>
                 <td>{item.name}</td>
                 <td>{item.instructor}</td>
+                <td className='text-center'>{item.seats}</td>
                 <td className="text-center">{item.enrolled}</td>
                 <td className="text-right">${item.price}</td>
                 <td>

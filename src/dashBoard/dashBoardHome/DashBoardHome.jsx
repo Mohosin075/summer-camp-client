@@ -2,8 +2,9 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import useUser from "../../hooks/useUser";
 import { Link } from "react-router-dom";
-import SetPageTitle from "../../components/SetPageTitle";
 import { Fade } from "react-awesome-reveal";
+import SetPageTitle from "../../components/setPageTitle";
+import { Helmet } from "react-helmet-async";
 
 const DashBoardHome = () => {
   const { user } = useContext(AuthContext);
@@ -12,6 +13,9 @@ const DashBoardHome = () => {
 
   return (
     <div className="my-20">
+      <Helmet>
+        <title>SpeckEasy | {currentUser?.role === 'admin' && 'admin' || currentUser?.role === 'instructor' && 'instructor' || currentUser?.role === 'student' && 'student'} home</title>
+      </Helmet>
       <span className="uppercase">
         <SetPageTitle title={`${currentUser?.role} Dashboard`}></SetPageTitle>
       </span>
