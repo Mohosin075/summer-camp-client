@@ -18,7 +18,7 @@ const ManageClass = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.patch(`https://summer-school-camp-server-nine.vercel.app/approved/${id}`, {
+        axios.patch(`https://summer-school-camp-server-mocha.vercel.app/approved/${id}`, {
           // Request data
         }, {
           headers: {
@@ -49,7 +49,7 @@ const ManageClass = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.patch(`https://summer-school-camp-server-nine.vercel.app/denied/${id}`, {
+        axios.patch(`https://summer-school-camp-server-mocha.vercel.app/denied/${id}`, {
           // Request data
         }, {
           headers: {

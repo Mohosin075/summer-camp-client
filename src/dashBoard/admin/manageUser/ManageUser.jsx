@@ -20,7 +20,7 @@ const ManageUser = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.patch(`https://summer-school-camp-server-nine.vercel.app/makeInstructor/${id}`, {
+        axios.patch(`https://summer-school-camp-server-mocha.vercel.app/makeInstructor/${id}`, {
           // Request data
         }, {
           headers: {
@@ -53,7 +53,7 @@ const ManageUser = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.patch(`https://summer-school-camp-server-nine.vercel.app/makeAdmin/${id}`, {
+        axios.patch(`https://summer-school-camp-server-mocha.vercel.app/makeAdmin/${id}`, {
           // Request data
         }, {
           headers: {

@@ -9,7 +9,7 @@ const useSelect = () => {
         queryKey : ['selectedItems'],
         enabled : !loading,
         queryFn : async()=>{
-            const res = await axios.get(`https://summer-school-camp-server-nine.vercel.app/select/${user?.email}`,{
+            const res = await axios.get(`https://summer-school-camp-server-mocha.vercel.app/select/${user?.email}`,{
                headers : {
                 authorization : `Bearer ${localStorage.getItem('secret-access-token')}`
                }

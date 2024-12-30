@@ -7,7 +7,7 @@ import SetPageTitle from "../../../components/SetPageTitle";
 const PopularInstuctor = () => {
     const [instructors, setInstructors] = useState([])
     useEffect(()=>{
-        fetch('https://summer-school-camp-server-nine.vercel.app/popularInstructor')
+        fetch('https://summer-school-camp-server-mocha.vercel.app/popularInstructor')
         .then(res=>res.json())
         .then(data=>{
             setInstructors(data)

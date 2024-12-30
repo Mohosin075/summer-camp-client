@@ -7,7 +7,7 @@ const PaymentHistory = () => {
     const [paymentData, setPaymentData] = useState([])
     console.log(user.email);
     useEffect(()=>{
-        fetch(`https://summer-school-camp-server-nine.vercel.app/paymentHistory/${user?.email}`)
+        fetch(`https://summer-school-camp-server-mocha.vercel.app/paymentHistory/${user?.email}`)
         .then(res=>res.json())
         .then(data=>{
             setPaymentData(data);

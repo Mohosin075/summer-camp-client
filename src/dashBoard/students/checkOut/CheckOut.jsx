@@ -20,7 +20,7 @@ const CheckOut = ({ price, selectedItem, id }) => {
 
   useEffect(() => {
     axios
-      .post("https://summer-school-camp-server-nine.vercel.app/create-payment-intent", { price })
+      .post("https://summer-school-camp-server-mocha.vercel.app/create-payment-intent", { price })
       .then((res) => {
         console.log(res.data.clientSecret);
         setClientSecret(res.data.clientSecret);
@@ -61,7 +61,7 @@ const CheckOut = ({ price, selectedItem, id }) => {
         itemName: selectedItem.name,
       };
 
-      fetch("https://summer-school-camp-server-nine.vercel.app/payment", {
+      fetch("https://summer-school-camp-server-mocha.vercel.app/payment", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -73,7 +73,7 @@ const CheckOut = ({ price, selectedItem, id }) => {
           console.log(data);
           if (data.insertedId) {
 
-            fetch(`https://summer-school-camp-server-nine.vercel.app/paymentSuccess/${id}`, {
+            fetch(`https://summer-school-camp-server-mocha.vercel.app/paymentSuccess/${id}`, {
               method : 'PATCH',
               headers : {
                 'content-type' : 'application/json'

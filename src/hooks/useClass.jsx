@@ -8,7 +8,7 @@ const useClass = () => {
         queryKey : ['classes'],
         enabled : !loading,
         queryFn : async()=>{
-            const res = await fetch('https://summer-school-camp-server-nine.vercel.app/allClasses',{
+            const res = await fetch('https://summer-school-camp-server-mocha.vercel.app/allClasses',{
                headers : {
                 authorization : `Bearer ${localStorage.getItem('secret-access-token')}`
                }

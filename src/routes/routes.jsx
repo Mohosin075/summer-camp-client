@@ -33,7 +33,7 @@ import PaymentHistory from "../dashBoard/students/paymentHistory/PaymentHistory"
         {
             path : '/',
             element : <Home></Home>,
-            loader : ()=> fetch('https://summer-school-camp-server-nine.vercel.app/polularClass')
+            loader : ()=> fetch('https://summer-school-camp-server-mocha.vercel.app/polularClass')
         },
         {
             path : '/login',
@@ -46,12 +46,12 @@ import PaymentHistory from "../dashBoard/students/paymentHistory/PaymentHistory"
         {
             path : '/instructor',
             element : <Instractor></Instractor>, 
-            loader : ()=> fetch('https://summer-school-camp-server-nine.vercel.app/instructor')
+            loader : ()=> fetch('https://summer-school-camp-server-mocha.vercel.app/instructor')
         },
         {
             path : '/classes',
             element : <Class></Class>,
-            loader : ()=> fetch('https://summer-school-camp-server-nine.vercel.app/classes')
+            loader : ()=> fetch('https://summer-school-camp-server-mocha.vercel.app/classes')
         },
         {
             path : '/forgetPass',

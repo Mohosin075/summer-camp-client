@@ -26,7 +26,7 @@ const SelectedClass = () => {
           }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`https://summer-school-camp-server-nine.vercel.app/selectItemDelete/${id}`, {
+                fetch(`https://summer-school-camp-server-mocha.vercel.app/selectItemDelete/${id}`, {
 
                     method : 'DELETE',
                     headers : {

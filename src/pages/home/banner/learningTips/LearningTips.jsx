@@ -5,7 +5,7 @@ import { Fade } from "react-awesome-reveal";
 const LearningTips = () => {
     const [tips, setTips] = useState([])
 useEffect(()=>{
-    fetch('https://summer-school-camp-server-nine.vercel.app/tips')
+    fetch('https://summer-school-camp-server-mocha.vercel.app/tips')
     .then(res=>res.json())
     .then(data=>{
         setTips(data);
