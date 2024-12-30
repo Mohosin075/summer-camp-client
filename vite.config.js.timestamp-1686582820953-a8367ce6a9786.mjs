@@ -4,6 +4,7 @@ import react from "file:///F:/programming-hero/assignment-12/summer-school-camp-
 var vite_config_default = defineConfig({
   plugins: [react()]
 });
+
 export {
   vite_config_default as default
 };
